@@ -1,0 +1,11 @@
+<resources>
+    <!-- 普通弹窗样式 -->
+    <style name="swip_customDialogTheme" parent="@android:style/Theme.Holo.Light">
+        <item name="android:windowFrame">@null</item><!-- 边框 -->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">true</item><!-- 外部变灰 -->
+        <item name="android:windowContentOverlay">@null</item><!-- 内部阴影 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+</resources>
