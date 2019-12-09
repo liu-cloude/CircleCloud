@@ -41,4 +41,8 @@
 -keep public class cn.jzvd.demo.CustomMedia.CustomMedia {*; }
 -keep public class cn.jzvd.demo.CustomMedia.JZMediaIjk {*; }
 -keep public class cn.jzvd.demo.CustomMedia.JZMediaSystemAssertFolder {*; }
+-keepattributes Exceptions,InnerClasses,Signature,Deprecated,SourceFile,LineNumberTable,Annotation,EnclosingMethod,MethodParameters
 
+-keep class **.R$* {
+*;
+}

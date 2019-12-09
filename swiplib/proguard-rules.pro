@@ -21,3 +21,8 @@
 #-renamesourcefileattribute SourceFile
 -keep class com.xingwang.swip.utils.**{*;}
 -keep class com.xingwang.swip.bean.**{*;}
+-keepattributes Exceptions,InnerClasses,Signature,Deprecated,SourceFile,LineNumberTable,Annotation,EnclosingMethod,MethodParameters
+
+-keep class **.R$* {
+*;
+}
