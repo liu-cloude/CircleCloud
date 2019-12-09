@@ -10,7 +10,7 @@ import java.io.Serializable;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CommonEntity<T> implements Serializable {
    private String message;
-   private String status;
+   private int status;
    private T data;
 
     public T getData() {
@@ -21,11 +21,11 @@ public class CommonEntity<T> implements Serializable {
         this.data = data;
     }
 
-    public String getStatus() {
-        return status==null?"0":status;
+    public int getStatus() {
+        return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 

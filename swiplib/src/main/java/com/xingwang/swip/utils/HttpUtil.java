@@ -171,9 +171,10 @@ public class HttpUtil {
             mainHandler.post(() ->  callBack.onFailure("数据解析错误!"));
             return;
         }
-        if (commonEntity.getStatus().equals("1")){
+        if (commonEntity.getStatus()==1){
             mainHandler.post(() -> callBack.onSuccess(JsonUtils.objectToJson(commonEntity.getData())));
         }else {
+            Log.i("handle","失败"+commonEntity.getStatus()+commonEntity.getMessage());
             mainHandler.post(() -> callBack.onFailure(commonEntity.getMessage()));
         }
     }

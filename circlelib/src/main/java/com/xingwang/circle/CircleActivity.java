@@ -122,7 +122,7 @@ public class CircleActivity extends BaseActivity {
         HttpUtil.get(Constants.CIRCLE_FORUM, new HttpUtil.HttpCallBack() {
             @Override
             public void onFailure(String message) {
-                ToastUtils.showShortSafe("请求失败");
+                ToastUtils.showShortSafe(message);
                 hideLoadingDialog();
             }
 

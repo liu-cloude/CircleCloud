@@ -21,8 +21,12 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            minifyEnabled true
+            consumerProguardFiles 'proguard-rules.pro'
+        }
+        debug{
+            minifyEnabled true
+            consumerProguardFiles 'proguard-rules.pro'
         }
     }
 
@@ -37,8 +41,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.wang.avi:library:2.1.3'
     implementation 'com.blankj:utilcode:1.8.2'
-    implementation 'com.beautydefinelibrary:beautydefinelibrary:1.1.7'
-    implementation 'com.beautyreslibrary:beautyreslibrary:1.0.6'
+    implementation 'com.beautydefinelibrary:beautydefinelibrary:1.1.8'
+    implementation 'com.beautyreslibrary:beautyreslibrary:1.1.3'
     //jackson
     implementation "com.fasterxml.jackson.core:jackson-core:2.6.5"
     implementation "com.fasterxml.jackson.core:jackson-annotations:2.6.5"
