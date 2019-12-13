@@ -33,7 +33,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
 
                 <data
-                    android:host="xingwang.host.commentinfo"
+                    android:host="${applicationId}.host.commentinfo"
                     android:scheme="circle" />
             </intent-filter>
         </activity>

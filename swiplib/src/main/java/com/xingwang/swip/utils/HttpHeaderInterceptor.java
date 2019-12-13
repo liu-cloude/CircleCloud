@@ -10,8 +10,8 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class HttpHeaderInterceptor implements Interceptor {
-    //private String mAuth= BeautyDefine.getAccountDefine().getAuthStr();
-    private String mAuth="RAlUUlcOQwpWUw5TBFQGAgRRAQQHWgVQUldQVApSBwFSAgkLBVNQZWVcNmBdLjIxYyd1NHMHY2YDeFMgAHJTY0BUMjUkVzR2Nn94dwE2eHdldnVnZEB8clARJztlVzNiRAZhcHVGe2RUDi97UVcgJWQVfzFZFA8WXw";
+    private String mAuth= BeautyDefine.getAccountDefine().getAuthStr();
+    //private String mAuth="FQIGBQcPFQkCV1hSDAJcAlMBVFFXA1BQUQwAVQdUW1JcAhACXVJbJBIVfiU1CmolY3F/aEVpIHQJWGo+bjg3JCQDcnVFDX9gcEF3cV90Ny5hQWciN0YyYid0JyMaV1M1AEFmJVANBSt2BwRvJxY2bjAbA2oKeFpxTll0IgN5engndjgiJx1+aV9GMnpxWVBjZQ19MyRmalM2JFc7dAVQIRUkVWJSCFFzIgNxIDVEKSVfIxMheVxKRwM=";
 
     public HttpHeaderInterceptor() {
     }

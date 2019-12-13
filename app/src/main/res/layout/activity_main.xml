@@ -9,19 +9,33 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/tv_jump"
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_jump_circle_uri"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="圈子" />
+        android:text="圈子uri"
+        android:textSize="15sp"/>
+
+    <TextView
+        android:id="@+id/tv_jump_essay_uri"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="文章uri"
+        android:textSize="15sp"/>
+
+    <TextView
+        android:id="@+id/tv_jump_circle"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="圈子"
+        android:textSize="15sp"/>
 
     <TextView
         android:id="@+id/tv_jump_essay"
-        android:layout_width="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="文章"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        android:textSize="15sp"/>
 </LinearLayout>

@@ -19,7 +19,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <data
                     android:scheme="essay"
-                    android:host="xingwang.host.adessay" />
+                    android:host="${applicationId}.host.adessay" />
             </intent-filter>
         </activity>
         <!--文章列表-->
