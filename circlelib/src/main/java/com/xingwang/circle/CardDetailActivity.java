@@ -370,8 +370,8 @@ public class CardDetailActivity extends BaseActivity implements View.OnClickList
                 avi_load.setVisibility(View.GONE);
                 avi_load.hide();
 
-                if (sendComment.getState() == 0) {
-                    ToastUtils.showShortSafe("审核中...");
+                if (sendComment.getState() != 1) {
+                    ToastUtils.showShortSafe("审核通过后展示");
                     return;
                 }
                 if (EmptyUtils.isNotEmpty(pId)) {//此时评论回复

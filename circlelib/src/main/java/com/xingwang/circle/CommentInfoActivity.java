@@ -30,6 +30,7 @@ import com.xingwang.circle.adapter.ChildCommentAdapter;
 import com.xingwang.circle.base.BaseActivity;
 import com.xingwang.circle.bean.CommentBean;
 import com.xingwang.circle.bean.CommentRoot;
+import com.xingwang.swip.utils.ActivityManager;
 import com.xingwang.swip.utils.Constants;
 import com.xingwang.circle.view.KeyBordHelper;
 import com.xingwang.swip.StateFrameLayout;
@@ -67,6 +68,7 @@ public class CommentInfoActivity extends BaseActivity implements View.OnClickLis
     protected TextView tv_username;
     protected TextView tv_comment;
     protected TextView tv_time;
+    protected TextView tv_card;
 
     protected ChildCommentAdapter childCommentAdapter;
     protected List<CommentBean> childComments=new ArrayList<>();
@@ -123,10 +125,12 @@ public class CommentInfoActivity extends BaseActivity implements View.OnClickLis
         tv_username=findViewById(R.id.tv_username);
         tv_time=findViewById(R.id.tv_time);
         img_head=findViewById(R.id.img_head);
+        tv_card=findViewById(R.id.tv_card);
 
         line_comment_body.setOnClickListener(this);
         line_user.setOnClickListener(this);
         tv_post_comment.setOnClickListener(this);
+        tv_card.setOnClickListener(this);
 
         title.setTitleText("评论详情");
         title.setOnBackClickListener(new TopTitleView.OnBackClickListener() {
@@ -405,6 +409,10 @@ public class CommentInfoActivity extends BaseActivity implements View.OnClickLis
             tv_comment_to.setVisibility(View.VISIBLE);
         }else if (i == R.id.line_user) {//用户详情
             BeautyDefine.getOpenPageDefine(this).toPersonal(Long.parseLong(topComment.getUser_id()));
+        }else if (i == R.id.tv_card) {//用户详情
+            ActivityManager.getInstance().finishActivity(CardDetailActivity.class);
+            CardDetailActivity.getIntent(this,topComment.getThread_id());
+            this.finish();
         }
     }
 

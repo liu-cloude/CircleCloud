@@ -21,8 +21,10 @@ import com.blankj.utilcode.util.EmptyUtils;
 import com.blankj.utilcode.util.FileUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.xingwang.circle.base.BaseActivity;
+import com.xingwang.circle.bean.Card;
 import com.xingwang.circle.bean.CardBody;
 import com.xingwang.circle.bean.CardFileType;
+import com.xingwang.circle.bean.CommentBean;
 import com.xingwang.circle.bean.Customer;
 import com.xingwang.circle.bean.Forum;
 import com.xingwang.swip.utils.Constants;
@@ -266,8 +268,22 @@ public class PostActivity extends BaseActivity implements SortableNinePhotoLayou
 
             @Override
             public void onSuccess(String json) {
-                ToastUtils.showShortSafe("发布完成");
                 hideLoadingDialog();
+                Card sendCard = JsonUtils.jsonToPojo(json, Card.class);
+
+                if (EmptyUtils.isEmpty(sendCard)){
+                    ToastUtils.showShortSafe("数据解析错误");
+                    return;
+                }
+
+                if (sendCard.getState() != 1) {
+                    ToastUtils.showShortSafe("审核通过后展示");
+                    finish();
+                    return;
+                }
+
+                ToastUtils.showShortSafe("发布完成");
+
                 EventBus.getDefault().post(category);
                 setResult(getIntent().getIntExtra(Constants.INTENT_DATA,100));
                 finish();

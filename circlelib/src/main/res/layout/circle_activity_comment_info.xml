@@ -68,13 +68,14 @@
                     android:layout_height="wrap_content"
                     android:textSize="13sp" />
 
-                <ImageView
-                    android:id="@+id/img_comment"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:tint="@color/circle_grey"
+                <TextView
+                    android:id="@+id/tv_card"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
                     android:layout_alignParentRight="true"
-                    android:src="@drawable/reslib_ic_chat_bubble_outline"/>
+                    android:text="查看原帖"
+                    android:textColor="@color/circle_blue"/>
             </RelativeLayout>
         </LinearLayout>
 
