@@ -42,7 +42,16 @@
             android:name=".CardDetailActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:theme="@style/circle_card_detail_theme"
-            android:windowSoftInputMode="adjustResize|stateHidden"/>
+            android:windowSoftInputMode="adjustResize|stateHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="${applicationId}.host.card"
+                    android:scheme="circle" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".PlayVideoActivity"
             android:theme="@style/reslib_AppTheme.Translucent" />

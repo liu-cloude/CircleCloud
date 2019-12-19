@@ -3,6 +3,7 @@ package com.xingwang.circle;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -202,6 +203,16 @@ public class CardDetailActivity extends BaseActivity implements View.OnClickList
         recycler_card.setAdapter(cardDetaildapter);
 
         id = getIntent().getStringExtra(Constants.INTENT_DATA);
+
+        if (EmptyUtils.isEmpty(id)){//uri获取
+            Uri uri=getIntent().getData();
+            if (EmptyUtils.isEmpty(uri)){
+                ToastUtils.showShortSafe("数据错误！");
+                this.finish();
+            }
+            id=uri.getQueryParameter("id");
+        }
+
         showLoadingDialog();
         getCardInfo();
 

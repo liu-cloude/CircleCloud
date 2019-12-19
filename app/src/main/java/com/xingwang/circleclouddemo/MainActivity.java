@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         tv_jump_circle_uri=findViewById(R.id.tv_jump_circle_uri);
         tv_jump_essay_uri=findViewById(R.id.tv_jump_essay_uri);
 
-        Uri circleUri = Uri.parse("circle://com.xingwang.circleclouddemo.host.commentinfo?id=44");
+        Uri circleUri = Uri.parse("circle://com.xingwang.circleclouddemo.host.card?id=56");
         Intent circleIntent = new Intent(Intent.ACTION_VIEW,circleUri);
 
         Uri essayUri = Uri.parse("essay://com.xingwang.circleclouddemo.host.adessay?url=http://zyapp.test.xw518.com/article/859");
