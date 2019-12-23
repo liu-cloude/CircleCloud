@@ -14,6 +14,10 @@ public class Constants {
     public final static int MAX_COUNT=9;
     /***帖子详情显示的点赞列表*/
     public final static int MAX_DIGG_NUM=4;
+    /**来源-所有栏目*/
+    public final static int ALL_CIRCLE=500;
+    /**来源-发帖*/
+    public final static int POST_CARD=7;
 
     public final static String CIRCLE_FORUM=HTTP_BBS+"general/forum/lists";
     public final static String CIRCLE_POST=HTTP_BBS+"user/thread/publish";

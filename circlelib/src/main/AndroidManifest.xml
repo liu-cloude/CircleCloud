@@ -17,8 +17,11 @@
     <application
         android:allowBackup="true"
         android:supportsRtl="true">
-        <activity android:name=".TagSelectActivity"
-            android:theme="@style/reslib_AppTheme.Translucent"></activity>
+        <activity android:name=".PartSelctActivity"
+            android:theme="@style/reslib_AppTheme.Translucent" ></activity>
+        <activity
+            android:name=".TagSelectActivity"
+            android:theme="@style/reslib_AppTheme.Translucent" />
         <activity
             android:name=".DiggListActivity"
             android:theme="@style/reslib_AppTheme.Translucent" />
@@ -37,7 +40,6 @@
                     android:scheme="circle" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".CardDetailActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
@@ -47,6 +49,7 @@
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <data
                     android:host="${applicationId}.host.card"
                     android:scheme="circle" />

@@ -26,7 +26,7 @@ android {
             minifyEnabled false
             consumerProguardFiles 'proguard-rules.pro'
         }
-        debug{
+        debug {
             minifyEnabled false
             consumerProguardFiles 'proguard-rules.pro'
         }

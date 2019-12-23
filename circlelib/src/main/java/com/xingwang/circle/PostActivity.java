@@ -204,17 +204,6 @@ public class PostActivity extends BaseActivity implements SortableNinePhotoLayou
         category=getIntent().getStringExtra(Constants.INTENT_DATA1);
         pickerDefine=BeautyDefine.getImagePickerDefine(this);
 
-      /*  flag=CardFileType.IMG;
-        picLocalPaths.add("/storage/emulated/0/Pictures/知乎/v2-5fb3c7564e7ca2c656bf3e959a1b755a_r.jpg");
-        picLocalPaths.add("/storage/emulated/0/tencent/qq_images/1528374391883.jpg");
-        picLocalPaths.add("/storage/emulated/0/Pictures/知乎/v2-a9f4bcee40e12fb94e1941a03815b9c7_r.jpg");
-        picLocalPaths.add("/storage/emulated/0/DCIM/Screenshots/Screenshot_2017-08-22-10-07-33-876_com.UCMobile.jpg");
-        picLocalPaths.add("/storage/emulated/0/DCIM/Screenshots/Screenshot_2017-08-22-10-07-33-876_com.UCMobile.jpg");
-        picLocalPaths.add("/storage/emulated/0/Pictures/知乎/v2-5fb3c7564e7ca2c656bf3e959a1b755a_r.jpg");
-        picLocalPaths.add("/storage/emulated/0/tencent/qq_images/1528374391883.jpg");
-        picLocalPaths.add("/storage/emulated/0/Pictures/知乎/v2-a9f4bcee40e12fb94e1941a03815b9c7_r.jpg");
-        sort_photos.setData((ArrayList<String>) picLocalPaths);*/
-
     }
 
     /**
@@ -428,7 +417,7 @@ public class PostActivity extends BaseActivity implements SortableNinePhotoLayou
             rela_play_video.setVisibility(View.GONE);
             flag = CardFileType.NONE;
         }else if (i == R.id.rela_select_tag) {
-            startActivityForResult(TagSelectActivity.class,TAG_CODE);
+            startActivityForResult(PartSelctActivity.class,TAG_CODE);
         }
     }
 

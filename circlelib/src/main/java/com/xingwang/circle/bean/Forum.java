@@ -1,5 +1,6 @@
 package com.xingwang.circle.bean;
 
+import com.blankj.utilcode.util.EmptyUtils;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.io.Serializable;
@@ -20,8 +21,8 @@ public class Forum implements Serializable {
     private String logo;
     private List<String> categorys;
     private String thread_num;
-
     private List<Forum> childForums;
+    private boolean isExpanded = false;
 
     public String getId() {
         return id;
@@ -77,5 +78,21 @@ public class Forum implements Serializable {
 
     public void setThread_num(String thread_num) {
         this.thread_num = thread_num;
+    }
+
+    public boolean isExpanded() {
+        return isExpanded;
+    }
+
+    public void setExpanded(boolean expanded) {
+        isExpanded = expanded;
+    }
+
+    //判断是否有子栏目
+    //true-有 false-无
+    public boolean hasChild(){
+        if (EmptyUtils.isNotEmpty(childForums))
+            return true;
+        return false;
     }
 }

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.xingwang.circle.CircleActivity;
+import com.xingwang.circle.PartSelctActivity;
 import com.xingwang.essay.EssayListActivity;
 import com.xingwang.essay.EssayWebviewActivity;
 
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         Uri circleUri = Uri.parse("circle://com.xingwang.circleclouddemo.host.card?id=56");
         Intent circleIntent = new Intent(Intent.ACTION_VIEW,circleUri);
 
-        Uri essayUri = Uri.parse("essay://com.xingwang.circleclouddemo.host.adessay?url=http://zyapp.test.xw518.com/article/859");
+        Uri essayUri = Uri.parse(" essay://com.xingwang.circleclouddemo.host.adessay?url=http://zyapp.test.xw518.com/article/859");
         Intent essayIntent = new Intent(Intent.ACTION_VIEW,essayUri);
 
         tv_jump_circle_uri.setOnClickListener(new View.OnClickListener() {
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         tv_jump_circle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               CircleActivity.getIntent(MainActivity.this);
+               PartSelctActivity.getIntent(MainActivity.this,500);
             }
         });
 
