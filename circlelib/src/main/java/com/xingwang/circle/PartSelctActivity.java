@@ -13,6 +13,7 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.xingwang.circle.adapter.PartAdapter;
 import com.xingwang.circle.base.BaseActivity;
 import com.xingwang.circle.bean.Forum;
+import com.xingwang.circle.bean.OnChildClickListener;
 import com.xingwang.circle.bean.ThirdLevel;
 import com.xingwang.swip.title.TopTitleView;
 import com.xingwang.swip.utils.Constants;
@@ -65,9 +66,14 @@ public class PartSelctActivity extends BaseActivity {
         partAdapter=new PartAdapter(this,forumList);
         list_forum.setAdapter(partAdapter);
 
-        partAdapter.setChildClickListener(new PartAdapter.OnChildClickListener() {
+        partAdapter.setChildClickListener(new OnChildClickListener() {
             @Override
-            public void onClick(Forum forum,String categorys) {
+            public void onItemClick(String categorys) {
+
+            }
+
+            @Override
+            public void onForumClick(Forum forum, String categorys) {
 
                 switch (flag){
                     case Constants.ALL_CIRCLE://所有栏目
@@ -87,7 +93,6 @@ public class PartSelctActivity extends BaseActivity {
                 }
             }
         });
-
         getForums();
     }
 

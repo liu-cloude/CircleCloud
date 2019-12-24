@@ -1,6 +1,7 @@
 package com.xingwang.circle.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,8 @@ import com.blankj.utilcode.util.EmptyUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.xingwang.circle.R;
 import com.xingwang.circle.bean.Forum;
+import com.xingwang.circle.bean.OnChildClickListener;
+import com.xingwang.circle.view.CustomerLinearLayoutManager;
 
 import java.util.List;
 
@@ -31,10 +34,6 @@ public class PartAdapter extends BaseAdapter {
         this.onChildClickListener = onChildClickListener;
     }
 
-    //点击子层级
-    public interface OnChildClickListener {
-        void onClick(Forum forum,String categorys);
-    }
 
     public PartAdapter(Context context){
         mContext = context;
@@ -102,7 +101,7 @@ public class PartAdapter extends BaseAdapter {
      */
     private View getTopLevelView() {
         GroupHolder holder = new GroupHolder();
-        View view = LayoutInflater.from(mContext).inflate(R.layout.item_top_part, null);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.circle_item_top_part, null);
         holder.tvName = (TextView) view.findViewById(R.id.tv_group_name);
         holder.childLayout = (LinearLayout) view.findViewById(R.id.child_layout);
         holder.layout = (LinearLayout) view.findViewById(R.id.line_layout);
@@ -117,8 +116,8 @@ public class PartAdapter extends BaseAdapter {
      */
     private View getChildView() {
         ChildHolder holder = new ChildHolder();
-        View view = LayoutInflater.from(mContext).inflate(R.layout.item_forum, null);
-        holder.tv_forum =  view.findViewById(R.id.tv_forum);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.circle_child_forum, null);
+        holder.recycler_forum =  view.findViewById(R.id.recycler_forum);
         view.setTag(holder);
         return view;
     }
@@ -159,22 +158,32 @@ public class PartAdapter extends BaseAdapter {
                 layout.addView(view);
             }
         } else if (EmptyUtils.isNotEmpty(parent.getCategorys())){//无子级--进入栏目列表
-            for (final String item : parent.getCategorys()) {
-                View view = getChildView();
-                ChildHolder holder = (ChildHolder) view.getTag();
-                holder.tv_forum.setText(item);
 
-                holder.tv_forum.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (onChildClickListener != null) {
-                            onChildClickListener.onClick(parent,item);
-                        }
-                    }
-                });
-                holder.tv_forum.setPadding(level * 25, 0, 0, 0);
-                layout.addView(view);
-            }
+            View view = getChildView();
+            ChildHolder holder = (ChildHolder) view.getTag();
+            CircleForumAdapter forumAdapter = new CircleForumAdapter(mContext,parent.getCategorys());
+            //设置布局方式
+            CustomerLinearLayoutManager customerManager=new CustomerLinearLayoutManager(mContext);
+            customerManager.setOrientation(CustomerLinearLayoutManager.HORIZONTAL);
+            holder.recycler_forum.setLayoutManager(customerManager);
+            holder.recycler_forum.setAdapter(forumAdapter);
+
+            forumAdapter.setChildClickListener(new OnChildClickListener() {
+                @Override
+                public void onItemClick(String categorys) {
+                    if (onChildClickListener!=null)
+                        onChildClickListener.onForumClick(parent,categorys);
+                }
+
+                @Override
+                public void onForumClick(Forum forum, String categorys) {
+
+                }
+            });
+
+            holder.recycler_forum.setPadding(level * 25, 0, 0, 0);
+            layout.addView(view);
+
         }
     }
 
@@ -186,7 +195,7 @@ public class PartAdapter extends BaseAdapter {
     }
 
     class ChildHolder {
-        TextView tv_forum;
+        RecyclerView recycler_forum;
     }
 
 

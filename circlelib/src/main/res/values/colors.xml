@@ -20,6 +20,7 @@
     <color name="circle_red">#ec3123</color>
     <color name="circle_blue">#0c8dfb</color>
     <color name="circle__window_color">#232233</color>
+    <color name="circle_bg">#efefef</color>
     <!-- 图片处于选中状态时的遮罩层颜色 -->
     <color name="circle_pp_photo_selected_mask">#4DFFFFFF</color>
 </resources>
