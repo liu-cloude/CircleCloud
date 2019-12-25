@@ -172,9 +172,7 @@ public class CardDetaildapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             viewHolderCard.recycler_tag.setAdapter(tagAdapter);
         }
 
-        addBadge(viewHolderCard.line_user,viewHolderCard.rela_avatar,card.getUser().getBadge());
-      /*  Log.i("card","viewHolderCard.line_user-->"+viewHolderCard.line_user.getChildCount());
-        Log.i("card","viewHolderCard.rela_avatar-->"+viewHolderCard.rela_avatar.getChildCount());*/
+        addBadge(viewHolderCard.line_label,viewHolderCard.rela_avatar,card.getUser().getBadge());
         //展示帖子
         //头像
         GlideUtils.loadPic(card.getUser().getAvatar(),viewHolderCard.img_head,context.getApplicationContext());
@@ -307,10 +305,8 @@ public class CardDetaildapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         GlideUtils.loadPic(customer.getAvatar(),viewHolderComment.img_head,context.getApplicationContext());
         viewHolderComment.tv_username.setText(customer.getNickname());
 
-        addBadge(viewHolderComment.line_user,viewHolderComment.rela_avatar,customer.getBadge());
+        addBadge(viewHolderComment.line_label,viewHolderComment.rela_avatar,customer.getBadge());
 
-      /*  Log.i("card","viewHolderComment.line_user-->"+viewHolderComment.line_user.getChildCount()+"-->"+commentBean.getBody());
-        Log.i("card","viewHolderComment.rela_avatar-->"+viewHolderComment.rela_avatar.getChildCount());*/
 
         viewHolderComment.line_comment_body.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -461,6 +457,7 @@ public class CardDetaildapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         protected TextView tv_username;
         protected TextView tv_comment;
         protected TextView tv_time;
+        protected LinearLayout line_label;
         protected ImageView img_comment;
         protected MostListView list_child;//子评论
         protected LinearLayout line_child;//子评论
@@ -476,6 +473,7 @@ public class CardDetaildapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             tv_username =view.findViewById(R.id.tv_username);
             tv_comment = view.findViewById(R.id.tv_comment);
             tv_time = view.findViewById(R.id.tv_time);
+            line_label = view.findViewById(R.id.line_label);
             img_comment = view.findViewById(R.id.img_comment);
             list_child = view.findViewById(R.id.list_child);
             tv_view_all_reply =  view.findViewById(R.id.tv_view_all_reply);
@@ -495,6 +493,7 @@ public class CardDetaildapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         protected LinearLayout line_user;
         protected NiceImageView img_head;
         protected RelativeLayout rela_avatar;
+        protected LinearLayout line_label;
         protected TextView tv_username;
         protected TextView tv_card_text;
         protected MyJzvdStd jzt_video;
@@ -527,6 +526,7 @@ public class CardDetaildapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
             img_head=convertView.findViewById(R.id.img_head);
             line_user=convertView.findViewById(R.id.line_user);
+            line_label=convertView.findViewById(R.id.line_label);
             rela_avatar=convertView.findViewById(R.id.rela_avatar);
             tv_username=convertView.findViewById(R.id.tv_username);
             tv_card_text=convertView.findViewById(R.id.tv_card_text);
@@ -570,20 +570,26 @@ public class CardDetaildapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         void onClick(CommentBean commentBean, int basePos);
     }
 
-    public void addBadge(LinearLayout line_user,RelativeLayout rela_avatar,String badge){
+    public void addBadge(LinearLayout line_label,RelativeLayout rela_avatar,String badge){
+
+        if (EmptyUtils.isEmpty(badge))
+            return;
+
         if(rela_avatar.getChildCount()==2){
             rela_avatar.removeViewAt(1);
         }
-        if(line_user.getChildCount()==3){
-            line_user.removeViewAt(2);
+
+        line_label.removeAllViews();
+
+        List<String> badges=Arrays.asList(badge.split(" "));
+
+        for (String label:badges){
+            line_label.addView(BeautyDefine.getLabelUiFactoryDefine().getLabelUiFactory().getLabelView(context,label));
         }
+
         if (badge.contains("gov")){
             View govView=BeautyDefine.getBadgeUiFactoryDefine().getBadgeUiFactory().getBadgeView(context,"gov");
             rela_avatar.addView(govView);
-        }
-        if (badge.contains("vip")){
-            View vipView=BeautyDefine.getBadgeUiFactoryDefine().getBadgeUiFactory().getBadgeView(context,"vip");
-            line_user.addView(vipView);
         }
     }
 }

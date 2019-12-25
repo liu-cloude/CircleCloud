@@ -44,6 +44,7 @@ import com.xingwang.swip.utils.NoDoubleClickUtils;
 import com.xingwang.swip.view.NiceImageView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -65,6 +66,7 @@ public class CommentInfoActivity extends BaseActivity implements View.OnClickLis
     protected LinearLayout line_user;
     protected RelativeLayout rela_avatar;
     protected NiceImageView img_head;
+    protected LinearLayout line_label;
     protected TextView tv_username;
     protected TextView tv_comment;
     protected TextView tv_time;
@@ -121,6 +123,7 @@ public class CommentInfoActivity extends BaseActivity implements View.OnClickLis
         tv_comment=findViewById(R.id.tv_comment);
         line_comment_body=findViewById(R.id.line_comment_body);
         line_user=findViewById(R.id.line_user);
+        line_label=findViewById(R.id.line_label);
         rela_avatar=findViewById(R.id.rela_avatar);
         tv_username=findViewById(R.id.tv_username);
         tv_time=findViewById(R.id.tv_time);
@@ -362,13 +365,18 @@ public class CommentInfoActivity extends BaseActivity implements View.OnClickLis
         tv_time.setText(topComment.getPublish_time());
 
         String badge=topComment.getUser().getBadge();
+
+        line_label.removeAllViews();
+
+        List<String> badges= Arrays.asList(badge.split(" "));
+
+        for (String label:badges){
+            line_label.addView(BeautyDefine.getLabelUiFactoryDefine().getLabelUiFactory().getLabelView(this,label));
+        }
+
         if (badge.contains("gov")){
             View govView=BeautyDefine.getBadgeUiFactoryDefine().getBadgeUiFactory().getBadgeView(this,"gov");
             rela_avatar.addView(govView);
-        }
-        if (badge.contains("vip")){
-            View vipView=BeautyDefine.getBadgeUiFactoryDefine().getBadgeUiFactory().getBadgeView(this,"vip");
-            line_user.addView(vipView);
         }
 
         getCommentInfo();

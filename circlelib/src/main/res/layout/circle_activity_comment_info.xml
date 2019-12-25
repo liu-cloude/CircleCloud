@@ -41,6 +41,13 @@
             <TextView
                 android:id="@+id/tv_username"
                 style="@style/circle_comment_username_tv" />
+
+            <LinearLayout
+                android:id="@+id/line_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
