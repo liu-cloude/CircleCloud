@@ -581,7 +581,7 @@ public class CardDetaildapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
         line_label.removeAllViews();
 
-        List<String> badges=Arrays.asList(badge.split(" "));
+        List<String> badges=Arrays.asList(badge.split(","));
 
         for (String label:badges){
             line_label.addView(BeautyDefine.getLabelUiFactoryDefine().getLabelUiFactory().getLabelView(context,label));

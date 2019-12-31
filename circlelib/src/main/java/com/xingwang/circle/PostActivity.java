@@ -389,10 +389,10 @@ public class PostActivity extends BaseActivity implements SortableNinePhotoLayou
                 startActivityForResult(ShotVideoActivity.class,VIDEO);
                 break;
             case CardFileType.IMG:
-               pickerDefine.showMultiplePicker(Constants.MAX_COUNT,(ArrayList<String>) picLocalPaths, new ImagePickerCallBack() {
+               pickerDefine.showMultiplePicker(Constants.MAX_COUNT,null, new ImagePickerCallBack() {
                     @Override
                     public void onResult(List<String> list) {
-                        picLocalPaths.clear();
+                        //picLocalPaths.clear();
                         picLocalPaths.addAll(list);
                         sort_photos.setData((ArrayList<String>) picLocalPaths);
                         if (EmptyUtils.isEmpty(picLocalPaths)){

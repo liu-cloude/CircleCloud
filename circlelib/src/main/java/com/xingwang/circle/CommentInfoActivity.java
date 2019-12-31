@@ -368,7 +368,7 @@ public class CommentInfoActivity extends BaseActivity implements View.OnClickLis
 
         line_label.removeAllViews();
 
-        List<String> badges= Arrays.asList(badge.split(" "));
+        List<String> badges= Arrays.asList(badge.split(","));
 
         for (String label:badges){
             line_label.addView(BeautyDefine.getLabelUiFactoryDefine().getLabelUiFactory().getLabelView(this,label));
