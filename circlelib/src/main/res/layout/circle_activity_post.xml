@@ -29,7 +29,6 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:textSize="16sp"
-                android:text="#黑社会的是#"
                 android:textColor="@color/circle_blue"
                 android:visibility="gone"/>
             <EditText
@@ -41,6 +40,7 @@
                 android:gravity="start"
                 android:hint="写些什么和大家分享..."
                 android:textSize="16sp"
+                android:maxLength="5000"
                 android:textColor="#474747"
                 android:textColorHint="#C6C6C6" />
 
