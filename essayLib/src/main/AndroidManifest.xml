@@ -26,6 +26,13 @@
         <activity android:name=".EssayListActivity"
             android:theme="@style/reslib_AppTheme.Translucent"
             android:hardwareAccelerated="false">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:scheme="essay"
+                    android:host="${applicationId}.host.essaylist" />
+            </intent-filter>
         </activity>
     </application>
 

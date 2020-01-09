@@ -3,6 +3,7 @@ package com.xingwang.essay;
 import android.content.Context;
 import android.content.Intent;
 
+import android.net.Uri;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -11,6 +12,7 @@ import com.blankj.utilcode.util.EmptyUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.xingwang.essay.adapter.EssayListViewpagerAdapter;
 import com.xingwang.essay.base.BaseActivity;
+import com.xingwang.essay.bean.Essay;
 import com.xingwang.essay.fragment.EssayListFragment;
 import com.xingwang.swip.title.TopTitleView;
 import com.xingwang.swip.utils.Constants;
@@ -57,6 +59,15 @@ public class EssayListActivity extends BaseActivity {
     public void initData() {
 
         category=getIntent().getStringExtra(Constants.INTENT_DATA);
+
+        if (EmptyUtils.isEmpty(category)){
+            Uri uri=getIntent().getData();
+            if (EmptyUtils.isNotEmpty(uri)){
+                category=uri.getQueryParameter("tag");
+            }
+        }
+
+
 
         HttpUtil.get(Constants.ESSAY_CATALOG, new HttpUtil.HttpCallBack() {
             @Override

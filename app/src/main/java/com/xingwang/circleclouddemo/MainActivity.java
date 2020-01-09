@@ -33,8 +33,11 @@ public class MainActivity extends AppCompatActivity {
         Uri circleUri = Uri.parse("circle://com.xingwang.circleclouddemo.host.card?id=56");
         Intent circleIntent = new Intent(Intent.ACTION_VIEW,circleUri);
 
-        Uri essayUri = Uri.parse(" essay://com.xingwang.circleclouddemo.host.adessay?url=http://zyapp.test.xw518.com/article/859");
+        Uri essayUri = Uri.parse("essay://com.xingwang.circleclouddemo.host.adessay?url=http://zyapp.test.xw518.com/article/859");
         Intent essayIntent = new Intent(Intent.ACTION_VIEW,essayUri);
+
+        Uri essaylistUri = Uri.parse("essay://com.xingwang.circleclouddemo.host.essaylist?tag=技术");
+        Intent essaylistIntent = new Intent(Intent.ACTION_VIEW,essaylistUri);
 
         tv_jump_circle_uri.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 EssayListActivity.getIntent(MainActivity.this);
+                //startActivity(essaylistIntent);
             }
         });
     }
