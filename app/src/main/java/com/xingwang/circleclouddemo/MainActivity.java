@@ -11,6 +11,7 @@ import com.xingwang.circle.CircleActivity;
 import com.xingwang.circle.PartSelctActivity;
 import com.xingwang.essay.EssayListActivity;
 import com.xingwang.essay.EssayWebviewActivity;
+import com.xingwang.groupchat.GroupListActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
 
     protected TextView tv_jump_circle;
     protected TextView tv_jump_essay;
+
+    protected TextView tv_jump_groupchat;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
 
         tv_jump_circle_uri=findViewById(R.id.tv_jump_circle_uri);
         tv_jump_essay_uri=findViewById(R.id.tv_jump_essay_uri);
+
+        tv_jump_groupchat=findViewById(R.id.tv_jump_groupchat);
 
         Uri circleUri = Uri.parse("circle://com.xingwang.circleclouddemo.host.card?id=56");
         Intent circleIntent = new Intent(Intent.ACTION_VIEW,circleUri);
@@ -65,6 +70,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 EssayListActivity.getIntent(MainActivity.this);
                 //startActivity(essaylistIntent);
+            }
+        });
+
+        tv_jump_groupchat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GroupListActivity.getIntent(MainActivity.this);
             }
         });
     }

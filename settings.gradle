@@ -1,1 +1,1 @@
-include ':app', ':swiplib', ':circlelib', ':essayLib'
+include ':app', ':swiplib', ':circlelib', ':essayLib', ':groupchat'

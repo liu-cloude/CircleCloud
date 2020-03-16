@@ -42,4 +42,5 @@ dependencies {
 
     implementation project(path: ':circlelib')
     implementation project(path: ':essayLib')
+    implementation project(path: ':groupchat')
 }
