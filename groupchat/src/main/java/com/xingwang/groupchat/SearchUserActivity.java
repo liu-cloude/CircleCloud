@@ -114,6 +114,9 @@ public class SearchUserActivity extends BaseActivity implements View.OnClickList
 
         nearestUserIdList.clear();
         nearestUserIdList.addAll(BeautyDefine.getMsgBoxDefine().queryDiffUserIds());
+        for (String id:nearestUserIdList){
+            Log.i("Search",id);
+        }
 
         getGroupMember();
 
