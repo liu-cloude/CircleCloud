@@ -126,8 +126,6 @@ public class SearchUserActivity extends BaseActivity implements View.OnClickList
             @Override
             public void onItemClick(int position) {
 
-                ToastUtils.showShortSafe("click"+position);
-
                 if (searchUserList.get(position).isSelect()){
                     addUserList.add(String.valueOf(searchUserList.get(position).getId()));
                 }else {
@@ -215,8 +213,10 @@ public class SearchUserActivity extends BaseActivity implements View.OnClickList
                 searchUserList.clear();
                 searchUserList.addAll(JsonUtils.jsonToList(json, User.class));
                 if (EmptyUtils.isEmpty(searchUserList)){
+                    hideLoadingDialog();
                     tv_empty.setVisibility(View.VISIBLE);
                     lv_list.setVisibility(View.GONE);
+                    tv_empty.setText("该用户不存在!");
                     return;
                 }
                 tv_empty.setVisibility(View.GONE);
