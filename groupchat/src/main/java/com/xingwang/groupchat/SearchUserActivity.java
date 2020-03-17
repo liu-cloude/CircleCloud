@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.beautydefinelibrary.BeautyDefine;
+import com.beautydefinelibrary.MsgBoxDefine;
 import com.blankj.utilcode.util.EmptyUtils;
 import com.blankj.utilcode.util.StringUtils;
 import com.blankj.utilcode.util.ToastUtils;
@@ -112,12 +113,17 @@ public class SearchUserActivity extends BaseActivity implements View.OnClickList
 
         groupId=getIntent().getStringExtra(Constants.INTENT_DATA);
 
-        nearestUserIdList.clear();
-        nearestUserIdList.addAll(BeautyDefine.getMsgBoxDefine().queryDiffUserIds());
-        for (String id:nearestUserIdList){
-            Log.i("Search",id);
-        }
 
+        BeautyDefine.getMsgBoxDefine().queryDiffUserIds(new MsgBoxDefine.StrListResultListener() {
+            @Override
+            public void onResult(List<String> list) {
+                nearestUserIdList.clear();
+                nearestUserIdList.addAll(list);
+                for (String id:nearestUserIdList){
+                    Log.i("Search",id);
+                }
+            }
+        });
         getGroupMember();
 
         Log.i("Search","size"+nearestUserIdList.size());
