@@ -168,8 +168,9 @@ public class CreateGroupActivity extends BaseActivity implements View.OnClickLis
             public void onResult(List<String> list) {
                 if (EmptyUtils.isNotEmpty(list)) {
                     localFiles.clear();
-                    localFiles.add(FileUtils.getFileByPath(list.get(0)));
-                    GlideUtils.loadAvatar(list.get(0),img_add_group_avatar,CreateGroupActivity.this);
+                    avatar=list.get(0);
+                    localFiles.add(FileUtils.getFileByPath(avatar));
+                    GlideUtils.loadAvatar(avatar,img_add_group_avatar,CreateGroupActivity.this);
                 }
             }
         });
