@@ -15,7 +15,7 @@ import com.xingwang.groupchat.R;
 import com.xingwang.groupchat.bean.Teammate;
 import com.xingwang.groupchat.bean.User;
 import com.xingwang.groupchat.callback.OnItemClickListener;
-import com.xingwang.groupchat.utils.GlideUtils;
+import com.xingwang.swip.utils.GlideUtils;
 
 import java.util.ArrayList;
 import java.util.List;

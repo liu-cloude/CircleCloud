@@ -9,10 +9,10 @@ import android.widget.EditText;
 import com.blankj.utilcode.util.EmptyUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.xingwang.groupchat.bean.Group;
-import com.xingwang.groupchat.title.TopTitleView;
-import com.xingwang.groupchat.utils.ActivityManager;
 import com.xingwang.groupchat.utils.Constants;
 import com.xingwang.groupchat.utils.HttpUtil;
+import com.xingwang.swip.title.TopTitleView;
+import com.xingwang.swip.utils.ActivityManager;
 
 import java.util.HashMap;
 

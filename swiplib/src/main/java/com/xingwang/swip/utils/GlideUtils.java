@@ -42,6 +42,26 @@ public class GlideUtils {
                 .dontAnimate().into(imageView);
     }
 
+    //加载头像
+    public static void loadAvatar(String url, ImageView imageView, Context context){
+        if (EmptyUtils.isEmpty(url)){
+            Glide.with(context).load(R.drawable.swip_default_avatar)
+                    .into(imageView);
+            return;
+        }
+        Glide.with(context).load(url)
+                .placeholder(R.drawable.swip_pp_ic_holder_light)
+                .error(R.drawable.swip_err_img)
+                .dontAnimate().into(imageView);
+    }
+
+    public static void loadPic(int id, ImageView imageView, Context context){
+        Glide.with(context).load(id)
+                .placeholder(R.drawable.swip_pp_ic_holder_light)
+                .error(R.drawable.swip_err_img)
+                .dontAnimate().into(imageView);
+    }
+
     public static void loadPic(Bitmap bitmap, ImageView imageView, Context context){
         Glide.with(context).load(bitmap)
                 .placeholder(R.drawable.swip_pp_ic_holder_light)

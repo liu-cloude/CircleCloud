@@ -7,7 +7,9 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.blankj.utilcode.util.EmptyUtils;
-import com.xingwang.groupchat.bean.CommonEntity;
+import com.xingwang.swip.bean.CommonEntity;
+import com.xingwang.swip.utils.HttpHeaderInterceptor;
+import com.xingwang.swip.utils.JsonUtils;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -135,7 +137,7 @@ public class HttpUtil {
                 try {
                     String mDatas = response.body().string();
                     Log.i("GET",mDatas);
-                    final CommonEntity commonEntity = JsonUtils.jsonToPojo(mDatas,CommonEntity.class);
+                    final CommonEntity commonEntity = JsonUtils.jsonToPojo(mDatas, CommonEntity.class);
 
                     handleResult(commonEntity,callBack,tag);
 

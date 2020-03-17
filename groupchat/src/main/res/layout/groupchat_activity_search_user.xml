@@ -8,7 +8,7 @@
     android:background="@color/groupchat_white"
     tools:context=".SearchUserActivity">
 
-    <com.xingwang.groupchat.title.TopTitleView
+    <com.xingwang.swip.title.TopTitleView
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

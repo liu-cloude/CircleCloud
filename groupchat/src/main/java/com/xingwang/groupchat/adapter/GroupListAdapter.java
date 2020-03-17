@@ -12,8 +12,8 @@ import com.blankj.utilcode.util.EmptyUtils;
 import com.bumptech.glide.Glide;
 import com.xingwang.groupchat.R;
 import com.xingwang.groupchat.bean.Group;
-import com.xingwang.groupchat.utils.GlideUtils;
 import com.xingwang.groupchat.view.CircularImage;
+import com.xingwang.swip.utils.GlideUtils;
 
 import java.util.ArrayList;
 import java.util.List;

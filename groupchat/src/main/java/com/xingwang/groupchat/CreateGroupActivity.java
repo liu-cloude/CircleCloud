@@ -19,12 +19,12 @@ import com.beautydefinelibrary.UploadResultCallBack;
 import com.blankj.utilcode.util.EmptyUtils;
 import com.blankj.utilcode.util.FileUtils;
 import com.blankj.utilcode.util.ToastUtils;
-import com.xingwang.groupchat.title.TopTitleView;
-import com.xingwang.groupchat.utils.ActivityManager;
 import com.xingwang.groupchat.utils.BottomPopWindow;
 import com.xingwang.groupchat.utils.Constants;
-import com.xingwang.groupchat.utils.GlideUtils;
 import com.xingwang.groupchat.utils.HttpUtil;
+import com.xingwang.swip.title.TopTitleView;
+import com.xingwang.swip.utils.ActivityManager;
+import com.xingwang.swip.utils.GlideUtils;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -168,6 +168,7 @@ public class CreateGroupActivity extends BaseActivity implements View.OnClickLis
                 if (EmptyUtils.isNotEmpty(list)) {
                     localFiles.clear();
                     localFiles.add(FileUtils.getFileByPath(list.get(0)));
+                    GlideUtils.loadAvatar(list.get(0),img_add_group_avatar,CreateGroupActivity.this);
                 }
             }
         });

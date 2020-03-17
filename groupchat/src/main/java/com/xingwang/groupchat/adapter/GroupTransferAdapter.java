@@ -11,8 +11,8 @@ import android.widget.TextView;
 import com.xingwang.groupchat.R;
 import com.xingwang.groupchat.bean.Teammate;
 import com.xingwang.groupchat.bean.User;
-import com.xingwang.groupchat.utils.GlideUtils;
 import com.xingwang.groupchat.view.CircularImage;
+import com.xingwang.swip.utils.GlideUtils;
 
 import java.util.List;
 

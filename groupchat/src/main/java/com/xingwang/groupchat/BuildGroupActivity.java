@@ -9,10 +9,9 @@ import android.widget.EditText;
 import com.blankj.utilcode.util.ToastUtils;
 import com.xingwang.groupchat.adapter.LookUpadapter;
 import com.xingwang.groupchat.bean.Teammate;
-import com.xingwang.groupchat.title.TopTitleView;
-import com.xingwang.groupchat.utils.Constants;
 import com.xingwang.groupchat.view.lookup.LookUpBean;
 import com.xingwang.groupchat.view.lookup.LookUpRecyclerView;
+import com.xingwang.swip.title.TopTitleView;
 
 import java.util.ArrayList;
 import java.util.List;
