@@ -11,7 +11,7 @@
          android:drawable="@drawable/groupchat_icon_checkbox_on"
          android:state_checked="true" />
      <item
-         android:drawable="@drawable/groupchat_icon_checkbox_on"
+         android:drawable="@drawable/groupchat_icon_checkbox_noclick"
          android:state_selected="true" />
 
      <item

@@ -54,11 +54,10 @@ public class SearchUserAdapter extends RecyclerView.Adapter<SearchUserAdapter.Vi
 
         final User user = mDatas.get(position);
 
-        if (user.isGroup()||user.isSelect()){
-            viewHolder.check_select.setChecked(true);
-        }else {
-            viewHolder.check_select.setChecked(false);
-        }
+        //是否为群中成员
+        viewHolder.check_select.setSelected(user.isGroup());
+        //是否选中
+        viewHolder.check_select.setChecked(user.isSelect());
 
         viewHolder.line_item.setOnClickListener(new View.OnClickListener() {
             @Override

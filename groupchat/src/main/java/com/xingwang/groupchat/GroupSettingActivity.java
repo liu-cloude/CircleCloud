@@ -301,6 +301,7 @@ public class GroupSettingActivity extends BaseActivity implements View.OnClickLi
 
     //上传图片
     private void uploadPic(){
+        showLoadingDialog();
         File[] arrayFile=localFiles.toArray(new File[localFiles.size()]);
 
         BeautyDefine.getUploadDefine().upload(arrayFile, new UploadResultCallBack() {
