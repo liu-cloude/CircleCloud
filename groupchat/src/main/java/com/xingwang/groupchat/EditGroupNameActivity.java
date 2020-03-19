@@ -13,6 +13,8 @@ import com.xingwang.groupchat.utils.Constants;
 import com.xingwang.groupchat.utils.HttpUtil;
 import com.xingwang.swip.title.TopTitleView;
 import com.xingwang.swip.utils.ActivityManager;
+import com.xingwreslib.beautyreslibrary.GroupNameInfo;
+import com.xingwreslib.beautyreslibrary.GroupNameLiveData;
 
 import java.util.HashMap;
 
@@ -89,7 +91,7 @@ public class EditGroupNameActivity extends BaseActivity {
     private void editGroupName(){
         showLoadingDialog();
         params.clear();
-        params.put("group_id",String.valueOf(group.getId()));
+        params.put("group_id",group.getStrId());
         params.put("title",newName);
         HttpUtil.post(Constants.GROUP_EDIT, params, new HttpUtil.HttpCallBack() {
             @Override
@@ -102,6 +104,7 @@ public class EditGroupNameActivity extends BaseActivity {
             public void onSuccess(String json,String tag) {
                 hideLoadingDialog();
                 ToastUtils.showShortSafe("修改成功!");
+                GroupNameLiveData.getInstance().notifyInfoChanged(new GroupNameInfo(group.getId(),newName));
                 ActivityManager.getInstance().finishActivity();
             }
         });

@@ -11,8 +11,6 @@ public class Constants {
     public static String HTTP_GROUP=IP+"group/user/group/";
     //其他
     public static String HTTP_GENERAL=IP+"user/general/user/";
-    /**图片选择最大张数*/
-    public final static int MAX_COUNT=9;
 
     //获取我加入的群
     public final static String GROUP_MY=HTTP_GROUP+"my";
@@ -38,4 +36,6 @@ public class Constants {
     //根据电话号码搜索用户
     public final static String SEARCH_USER=HTTP_GENERAL+"search";
 
+    //根据电话号码搜索用户
+    public final static String USER_INFO=HTTP_GENERAL+"info";
 }

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
@@ -33,6 +34,10 @@ import com.xingwang.swip.title.TopTitleView;
 import com.xingwang.swip.utils.ActivityManager;
 import com.xingwang.swip.utils.GlideUtils;
 import com.xingwang.swip.utils.JsonUtils;
+import com.xingwreslib.beautyreslibrary.GroupDissolveInfo;
+import com.xingwreslib.beautyreslibrary.GroupDissolveLiveData;
+import com.xingwreslib.beautyreslibrary.GroupMemsInfo;
+import com.xingwreslib.beautyreslibrary.GroupMemsLiveData;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -348,8 +353,32 @@ public class GroupSettingActivity extends BaseActivity implements View.OnClickLi
             public void onSuccess(String json, String tag) {
                 hideLoadingDialog();
                 ToastUtils.showShortSafe("操作成功!");
+
+                if (url.equals(Constants.GROUP_DISMISS)){//解散群聊
+                    GroupDissolveLiveData.getInstance().notifyInfoChanged(new GroupDissolveInfo(group.getId(),true));
+                }else {//退出群聊
+
+                    ArrayList<GroupMemsInfo.Mem> leavasList=new ArrayList<>();
+
+                    GroupMemsInfo memsInfo=new GroupMemsInfo(group.getId(),leavasList);
+
+                    GroupMemsInfo.Mem me=memsInfo.new Mem(BeautyDefine.getUserInfoDefine(GroupSettingActivity.this).getUserId(),
+                            BeautyDefine.getUserInfoDefine(GroupSettingActivity.this).getNickName(),
+                            BeautyDefine.getUserInfoDefine(GroupSettingActivity.this).getUserHeadUrl());
+
+                    leavasList.add(me);
+
+                    GroupMemsLiveData.getInstance().notifyInfoChanged(memsInfo);
+                }
+
                 ActivityManager.getInstance().finishActivity();
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        pickerDefine.onActivityResultHanlder(requestCode,resultCode,data);
     }
 }

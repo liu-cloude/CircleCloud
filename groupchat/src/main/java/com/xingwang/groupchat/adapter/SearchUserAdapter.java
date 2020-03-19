@@ -54,7 +54,7 @@ public class SearchUserAdapter extends RecyclerView.Adapter<SearchUserAdapter.Vi
 
         final User user = mDatas.get(position);
 
-        if (user.isGroup()){
+        if (user.isGroup()||user.isSelect()){
             viewHolder.check_select.setChecked(true);
         }else {
             viewHolder.check_select.setChecked(false);

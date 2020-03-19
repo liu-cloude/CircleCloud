@@ -28,6 +28,8 @@ import com.xingwang.swip.title.TopTitleView;
 import com.xingwang.swip.utils.ActivityManager;
 import com.xingwang.swip.utils.GlideUtils;
 import com.xingwang.swip.utils.JsonUtils;
+import com.xingwreslib.beautyreslibrary.GroupMemsInfo;
+import com.xingwreslib.beautyreslibrary.GroupMemsLiveData;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -47,12 +49,19 @@ public class GroupMemberActivity extends BaseActivity implements View.OnClickLis
     private GroupMemberListAdapter memberListAdapter;
 
     private List<User> memberList = new ArrayList<>();
-    //选中的用户
-    private List<String> selectUserIdList = new ArrayList<>();
+    //删除用户个数
+    private int leaveCount=0;
+    //private List<String> selectUserIdList = new ArrayList<>();
 
     private Group group;//群信息
     private int count=0;//计数
     private HashMap<String,String> params=new HashMap<>();
+
+    private boolean isStop=false;//上传删除群员失败
+
+    //通知群员变化
+    private ArrayList<GroupMemsInfo.Mem> leavasList=new ArrayList<>();
+    private GroupMemsInfo memsInfo;
 
     public static void getIntent(Context context, Group group) {
         Intent intent = new Intent(context, GroupMemberActivity.class);
@@ -94,19 +103,23 @@ public class GroupMemberActivity extends BaseActivity implements View.OnClickLis
 
         group=(Group)getIntent().getSerializableExtra(Constants.INTENT_DATA);
 
+        memsInfo=new GroupMemsInfo(group.getId(),leavasList);
+
         memberListAdapter.setBoxClickListener(new GroupMemberListAdapter.OnCheckBoxClickListener() {
             @Override
             public void onCheckClick(int position) {
                 if (memberList.get(position).isSelect()){
-                    selectUserIdList.add(memberList.get(position).getStrId());
+                    leaveCount++;
+                    //selectUserIdList.add(memberList.get(position).getStrId());
                 }else {
-                    selectUserIdList.remove(memberList.get(position).getStrId());
+                    leaveCount--;
+                    //selectUserIdList.remove(memberList.get(position).getStrId());
                 }
-                if (selectUserIdList.size()==0){//此时不删除
+                if (leaveCount==0){//此时不删除
                     title.setRightFristVisible(View.GONE);
                 }else {
                     title.setRightFristVisible(View.VISIBLE);
-                    title.setRightFristText("删除("+selectUserIdList.size()+")");
+                    title.setRightFristText("删除("+leaveCount+")");
                 }
             }
         });
@@ -122,11 +135,16 @@ public class GroupMemberActivity extends BaseActivity implements View.OnClickLis
         title.setOnRightFirstClickListener(new TopTitleView.OnRightFirstClickListener() {
             @Override
             public void onRightFirstClickListener(View v) {
-                DialogUtils.obtainCommonDialog("确认要将该用户从本群中移除?", new DialogAlertCallback() {
+                DialogUtils.obtainCommonDialog("确认要选中的用户从本群中移除?", new DialogAlertCallback() {
                     @Override
                     public void sure() {
-                        for (String userId:selectUserIdList){
-                            removeGroup(userId);
+                        isStop=false;
+                        for (User user:memberList){
+                            if (user.isSelect()){
+                                GroupMemsInfo.Mem me=memsInfo.new Mem(user.getStrId(),user.getNickname(),user.getAvatar());
+                                leavasList.add(me);
+                                removeGroup(user.getStrId());
+                            }
                         }
                     }
                 }).show(getSupportFragmentManager());
@@ -173,15 +191,26 @@ public class GroupMemberActivity extends BaseActivity implements View.OnClickLis
         HttpUtil.post(Constants.GROUP_MEMBER_REMOVE, params, new HttpUtil.HttpCallBack() {
             @Override
             public void onFailure(String message) {
+
+                if (!isStop){
+                    ToastUtils.showShortSafe(message);
+                }
+                isStop=true;
                 hideLoadingDialog();
-                ToastUtils.showShortSafe(message);
             }
 
             @Override
             public void onSuccess(String json, String tag) {
-                if (++count==selectUserIdList.size()){
+
+                if (isStop){
+                    hideLoadingDialog();
+                    return;
+                }
+
+                if (++count==leaveCount){
                     hideLoadingDialog();
                     ToastUtils.showShortSafe("移除成功!");
+                    GroupMemsLiveData.getInstance().notifyInfoChanged(memsInfo);
                     ActivityManager.getInstance().finishActivity();
                 }
             }
