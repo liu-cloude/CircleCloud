@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.xingwang.circleclouddemo">
 
+    <!--  android:networkSecurityConfig="@xml/groupchat_network_security_config"-->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"

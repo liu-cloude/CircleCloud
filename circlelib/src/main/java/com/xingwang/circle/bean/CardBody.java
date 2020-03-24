@@ -46,15 +46,7 @@ public class CardBody {
         this.imgs = imgs;
     }
 
-    /**判断视频相关文件是否完成上传
-     * true-完成
-     * false-未完成*/
-    @JsonIgnore
-    public boolean isVideoUploadFinish(){
-        if (EmptyUtils.isNotEmpty(video)
-                &&EmptyUtils.isNotEmpty(cover)){
-            return true;
-        }
-        return false;
+    public void setCoverUrl(){
+        setCover(video+"?x-oss-process=video/snapshot,t_800,f_jpg,w_0,h_0,m_fast");
     }
 }

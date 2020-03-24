@@ -9,6 +9,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -109,6 +110,7 @@ public class EssayListFragment extends BaseLazyLoadFragment implements OnRefresh
     /**第一次获取数据*/
     private void getFirstData(){
         params.clear();
+        Log.i("EssayList",title);
         params.put("category",title);
         params.put("backward_div_id",MAX_NUM);
         params.put("num","10");

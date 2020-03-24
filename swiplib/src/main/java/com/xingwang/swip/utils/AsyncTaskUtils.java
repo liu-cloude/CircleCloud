@@ -1,14 +1,14 @@
-package com.xingwang.groupchat.utils;
+package com.xingwang.swip.utils;
 
 import android.os.AsyncTask;
 import android.os.Build;
 
-import com.xingwang.groupchat.utils.asynctask.IDoInBackground;
-import com.xingwang.groupchat.utils.asynctask.IIsViewActive;
-import com.xingwang.groupchat.utils.asynctask.IPostExecute;
-import com.xingwang.groupchat.utils.asynctask.IPreExecute;
-import com.xingwang.groupchat.utils.asynctask.IProgressUpdate;
-import com.xingwang.groupchat.utils.asynctask.IPublishProgress;
+import com.xingwang.swip.utils.asynctask.IDoInBackground;
+import com.xingwang.swip.utils.asynctask.IIsViewActive;
+import com.xingwang.swip.utils.asynctask.IPostExecute;
+import com.xingwang.swip.utils.asynctask.IPreExecute;
+import com.xingwang.swip.utils.asynctask.IProgressUpdate;
+import com.xingwang.swip.utils.asynctask.IPublishProgress;
 
 public class AsyncTaskUtils<Params, Progress, Result> extends AsyncTask<Params, Progress, Result> implements IPublishProgress<Progress> {
 

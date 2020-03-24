@@ -163,9 +163,9 @@ public class CreateGroupActivity extends BaseActivity implements View.OnClickLis
     //获取图片/视频选择
     private void getPicResult() {
         ToastUtils.showShortSafe("getPicResult()");
-        pickerDefine.showMultiplePicker(1, null, new ImagePickerCallBack() {
+        pickerDefine.showAvtarPicker(new ImagePickerCallBack() {
             @Override
-            public void onResult(List<String> list) {
+            public void onResult(List<String> list, ImagePickerDefine.MediaType mediaType, List<String> list1) {
                 if (EmptyUtils.isNotEmpty(list)) {
                     localFiles.clear();
                     avatar=list.get(0);

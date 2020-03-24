@@ -171,18 +171,19 @@ public class PostActivity extends BaseActivity implements SortableNinePhotoLayou
                 switch (fileType){
                     case CardFileType.VIDEO:
                         body.setVideo(picNetPaths.get(0));
+                        body.setCoverUrl();
                         postCard(JsonUtils.objectToJson(body));
                         break;
                     case CardFileType.IMG:
                         body.setImgs(picNetPaths);
                         postCard(JsonUtils.objectToJson(body));
                         break;
-                    case CardFileType.COVER:
+                   /* case CardFileType.COVER:
                         body.setCover(picNetPaths.get(0));
                         localFiles.clear();
                         localFiles.add(FileUtils.getFileByPath(videoPath));
                         upload(CardFileType.VIDEO,body);
-                        break;
+                        break;*/
                 }
             }
 
@@ -229,8 +230,8 @@ public class PostActivity extends BaseActivity implements SortableNinePhotoLayou
         localFiles.clear();
         switch (flag){
             case CardFileType.VIDEO:
-                localFiles.add(FileUtils.getFileByPath(firstFramePath));
-                upload(CardFileType.COVER,body);
+                localFiles.add(FileUtils.getFileByPath(videoPath));
+                upload(CardFileType.VIDEO,body);
                 break;
             case CardFileType.IMG:
 
@@ -389,17 +390,32 @@ public class PostActivity extends BaseActivity implements SortableNinePhotoLayou
                 startActivityForResult(ShotVideoActivity.class,VIDEO);
                 break;
             case CardFileType.IMG:
-               pickerDefine.showMultiplePicker(Constants.MAX_COUNT,null, new ImagePickerCallBack() {
-                    @Override
-                    public void onResult(List<String> list) {
-                        //picLocalPaths.clear();
-                        picLocalPaths.addAll(list);
-                        sort_photos.setData((ArrayList<String>) picLocalPaths);
-                        if (EmptyUtils.isEmpty(picLocalPaths)){
-                            flag=CardFileType.NONE;
-                        }
-                    }
-                });
+               pickerDefine.showMultiplePicker(Constants.MAX_COUNT, null,true, new ImagePickerCallBack() {
+                   @Override
+                   public void onResult(List<String> list, ImagePickerDefine.MediaType mediaType, List<String> list1) {
+
+                       if (mediaType== ImagePickerDefine.MediaType.VIDEO&&
+                            EmptyUtils.isNotEmpty(list)){//此时为视频
+
+                           sort_photos.setVisibility(View.GONE);
+                           rela_play_video.setVisibility(View.VISIBLE);
+
+                            videoPath=list.get(0);
+                            if (EmptyUtils.isNotEmpty(list1)){//封面
+                                firstFramePath=list1.get(0);
+                            }
+                            flag=CardFileType.VIDEO;
+                            GlideUtils.loadPic(firstFramePath,img_screen,getApplicationContext());
+                            return;
+                       }
+
+                       picLocalPaths.addAll(list);
+                       sort_photos.setData((ArrayList<String>) picLocalPaths);
+                       if (EmptyUtils.isEmpty(picLocalPaths)){
+                           flag=CardFileType.NONE;
+                       }
+                   }
+               });
                 break;
             default:
                 sheetDialog.showDialog(getSupportFragmentManager());

@@ -28,15 +28,16 @@ import com.xingwang.groupchat.bean.Group;
 import com.xingwang.groupchat.bean.User;
 import com.xingwang.groupchat.callback.DialogAlertCallback;
 import com.xingwang.groupchat.callback.OnItemClickListener;
-import com.xingwang.groupchat.utils.AsyncTaskUtils;
 import com.xingwang.groupchat.utils.Constants;
 import com.xingwang.groupchat.utils.DialogUtils;
 import com.xingwang.groupchat.utils.HttpUtil;
-import com.xingwang.groupchat.utils.asynctask.IDoInBackground;
-import com.xingwang.groupchat.utils.asynctask.IPublishProgress;
+
 import com.xingwang.swip.title.TopTitleView;
 import com.xingwang.swip.utils.ActivityManager;
+import com.xingwang.swip.utils.AsyncTaskUtils;
 import com.xingwang.swip.utils.JsonUtils;
+import com.xingwang.swip.utils.asynctask.IDoInBackground;
+import com.xingwang.swip.utils.asynctask.IPublishProgress;
 import com.xingwreslib.beautyreslibrary.GroupMemsInfo;
 import com.xingwreslib.beautyreslibrary.GroupMemsLiveData;
 

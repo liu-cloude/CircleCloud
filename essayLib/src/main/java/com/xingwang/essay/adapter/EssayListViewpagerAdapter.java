@@ -5,13 +5,15 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.xingwang.essay.bean.EssayTitle;
+
 import java.util.List;
 
 public class EssayListViewpagerAdapter extends FragmentPagerAdapter {
     private List<Fragment> fragments;
-    private List<String> titles;
+    private List<EssayTitle> titles;
 
-    public EssayListViewpagerAdapter(FragmentManager fm, List<Fragment> fragments, List<String> titles) {
+    public EssayListViewpagerAdapter(FragmentManager fm, List<Fragment> fragments, List<EssayTitle> titles) {
         super(fm);
         this.fragments = fragments;
         this.titles = titles;
@@ -28,6 +30,6 @@ public class EssayListViewpagerAdapter extends FragmentPagerAdapter {
     }
     @Nullable
     public CharSequence getPageTitle(int position) {
-        return (CharSequence)this.titles.get(position);
+        return (CharSequence)this.titles.get(position).getTitle();
     }
 }

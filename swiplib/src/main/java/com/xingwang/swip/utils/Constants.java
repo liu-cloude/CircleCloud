@@ -44,7 +44,7 @@ public class Constants {
     public static String HTTP_ESSAY =IP+"article/general/article/";
     public static String HTTP_COLLECT =IP+"favorite/user/api/";
 
-    public final static String ESSAY_CATALOG=HTTP_ESSAY+"categorys";
+    public final static String ESSAY_CATALOG=IP+"article/general/category/lists";
     public final static String ESSAY_LIST=HTTP_ESSAY+"lists";
     public final static String ESSAY_INFO=HTTP_ESSAY+"detail";
 
