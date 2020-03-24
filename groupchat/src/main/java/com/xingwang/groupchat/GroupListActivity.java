@@ -33,7 +33,6 @@ public class GroupListActivity extends BaseActivity {
     private GroupListAdapter groupAdapter;
 
     private List<Group> groupList=new ArrayList<>();
-
     public static void getIntent(Context context) {
         Intent intent = new Intent(context, GroupListActivity.class);
         context.startActivity(intent);

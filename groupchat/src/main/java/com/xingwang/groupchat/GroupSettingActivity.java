@@ -287,9 +287,9 @@ public class GroupSettingActivity extends BaseActivity implements View.OnClickLi
 
     //获取图片/视频选择
     private void getPicResult(){
-        pickerDefine.showMultiplePicker(1,null, new ImagePickerCallBack() {
+        pickerDefine.showAvtarPicker(new ImagePickerCallBack() {
             @Override
-            public void onResult(List<String> list) {
+            public void onResult(List<String> list, ImagePickerDefine.MediaType mediaType, List<String> list1) {
                 if (EmptyUtils.isNotEmpty(list)){
                     localFiles.clear();
                     localFiles.add(FileUtils.getFileByPath(list.get(0)));
