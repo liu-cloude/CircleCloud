@@ -9,7 +9,7 @@ public interface CardFileType {
     //视频
     String VIDEO="shortvideo";
     //视频封面
-   // String COVER="cover";
+    String COVER="cover";
     //无文件
     String NONE="text";
 

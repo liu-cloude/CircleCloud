@@ -45,8 +45,4 @@ public class CardBody {
     public void setImgs(List<String> imgs) {
         this.imgs = imgs;
     }
-
-    public void setCoverUrl(){
-        setCover(video+"?x-oss-process=video/snapshot,t_800,f_jpg,w_0,h_0,m_fast");
-    }
 }

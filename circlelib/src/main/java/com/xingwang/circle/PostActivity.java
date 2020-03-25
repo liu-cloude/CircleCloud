@@ -76,11 +76,11 @@ public class PostActivity extends BaseActivity implements SortableNinePhotoLayou
     private String category;//栏目
     private String videoPath;//视频地址
     private String firstFramePath;//视频第一帧地址
+    //相册是否显示视频选项 true-显示 false-不显示,默认显示
+    private boolean isShowVideo=true;//视频
 
     private BottomSheetDialog sheetDialog;
     private ImagePickerDefine pickerDefine;
-
-    //protected OSS oss;
 
     public static void getIntent(Context context,String forum_id,String category) {
         Intent intent = new Intent(context, PostActivity.class);
@@ -171,19 +171,18 @@ public class PostActivity extends BaseActivity implements SortableNinePhotoLayou
                 switch (fileType){
                     case CardFileType.VIDEO:
                         body.setVideo(picNetPaths.get(0));
-                        body.setCoverUrl();
                         postCard(JsonUtils.objectToJson(body));
                         break;
                     case CardFileType.IMG:
                         body.setImgs(picNetPaths);
                         postCard(JsonUtils.objectToJson(body));
                         break;
-                   /* case CardFileType.COVER:
+                    case CardFileType.COVER:
                         body.setCover(picNetPaths.get(0));
                         localFiles.clear();
                         localFiles.add(FileUtils.getFileByPath(videoPath));
                         upload(CardFileType.VIDEO,body);
-                        break;*/
+                        break;
                 }
             }
 
@@ -230,8 +229,8 @@ public class PostActivity extends BaseActivity implements SortableNinePhotoLayou
         localFiles.clear();
         switch (flag){
             case CardFileType.VIDEO:
-                localFiles.add(FileUtils.getFileByPath(videoPath));
-                upload(CardFileType.VIDEO,body);
+                localFiles.add(FileUtils.getFileByPath(firstFramePath));
+                upload(CardFileType.COVER,body);
                 break;
             case CardFileType.IMG:
 
@@ -295,7 +294,7 @@ public class PostActivity extends BaseActivity implements SortableNinePhotoLayou
     public void onClickAddNinePhotoItem(SortableNinePhotoLayout sortableNinePhotoLayout, View view, int position, ArrayList<String> models) {
         if (EmptyUtils.isEmpty(picLocalPaths)
                 &&EmptyUtils.isEmpty(videoPath)){
-            flag=CardFileType.NONE;
+            resetPicPicker();
         }
         getFileResult();
     }
@@ -304,7 +303,7 @@ public class PostActivity extends BaseActivity implements SortableNinePhotoLayou
     public void onClickDeleteNinePhotoItem(SortableNinePhotoLayout sortableNinePhotoLayout, View view, int position, String model, ArrayList<String> models) {
         sort_photos.removeItem(position);
         if (EmptyUtils.isEmpty(sort_photos.getData())){
-            flag=CardFileType.NONE;
+            resetPicPicker();
         }
     }
 
@@ -335,7 +334,7 @@ public class PostActivity extends BaseActivity implements SortableNinePhotoLayou
                 case VIDEO://视频
                     videoPath=data.getStringExtra(Constants.INTENT_DATA);
                     if (EmptyUtils.isEmpty(videoPath)){
-                        flag=CardFileType.NONE;
+                        resetPicPicker();
                     }else {
                         sort_photos.setVisibility(View.GONE);
                         rela_play_video.setVisibility(View.VISIBLE);
@@ -390,7 +389,8 @@ public class PostActivity extends BaseActivity implements SortableNinePhotoLayou
                 startActivityForResult(ShotVideoActivity.class,VIDEO);
                 break;
             case CardFileType.IMG:
-               pickerDefine.showMultiplePicker(Constants.MAX_COUNT, null,true, new ImagePickerCallBack() {
+               pickerDefine.showMultiplePicker(Constants.MAX_COUNT, (ArrayList<String>) picLocalPaths,
+                       isShowVideo, new ImagePickerCallBack() {
                    @Override
                    public void onResult(List<String> list, ImagePickerDefine.MediaType mediaType, List<String> list1) {
 
@@ -412,7 +412,9 @@ public class PostActivity extends BaseActivity implements SortableNinePhotoLayou
                        picLocalPaths.addAll(list);
                        sort_photos.setData((ArrayList<String>) picLocalPaths);
                        if (EmptyUtils.isEmpty(picLocalPaths)){
-                           flag=CardFileType.NONE;
+                            resetPicPicker();
+                       }else {
+                           isShowVideo=false;
                        }
                    }
                });
@@ -423,6 +425,12 @@ public class PostActivity extends BaseActivity implements SortableNinePhotoLayou
         }
     }
 
+    //重置相册选择操作
+    private void resetPicPicker(){
+        flag=CardFileType.NONE;
+        isShowVideo=true;
+    }
+
     @Override
     public void onClick(View v) {
         int i = v.getId();
@@ -431,7 +439,7 @@ public class PostActivity extends BaseActivity implements SortableNinePhotoLayou
         } else if (i == R.id.img_delete_video) {
             sort_photos.setVisibility(View.VISIBLE);
             rela_play_video.setVisibility(View.GONE);
-            flag = CardFileType.NONE;
+            resetPicPicker();
         }else if (i == R.id.rela_select_tag) {
             startActivityForResult(PartSelctActivity.class,TAG_CODE);
         }
