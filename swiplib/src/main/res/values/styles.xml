@@ -8,4 +8,20 @@
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 
+    <style name="swip_popupRightBottomAnimationDown" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/swip_popwindow_right_bottom_enter</item>
+        <item name="android:windowExitAnimation">@anim/swip_popwindow_right_bottom_close</item>
+    </style>
+    <style name="swip_popupRightTopAnimationDown" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/swip_popwindow_right_top_enter</item>
+        <item name="android:windowExitAnimation">@anim/swip_popwindow_right_top_close</item>
+    </style>
+    <style name="swip_popupLeftBottomAnimationDown" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/swip_popwindow_left_bottom_enter</item>
+        <item name="android:windowExitAnimation">@anim/swip_popwindow_left_bottom_close</item>
+    </style>
+    <style name="swip_popupLeftTopAnimationDown" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/swip_popwindow_left_top_enter</item>
+        <item name="android:windowExitAnimation">@anim/swip_popwindow_left_top_close</item>
+    </style>
 </resources>

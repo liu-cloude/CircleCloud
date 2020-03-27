@@ -29,6 +29,10 @@ public class EssayTitle implements Serializable {
         return id;
     }
 
+    public String getStrId() {
+        return String.valueOf(id);
+    }
+
     public void setId(long id) {
         this.id = id;
     }
@@ -71,6 +75,13 @@ public class EssayTitle implements Serializable {
 
     public void setChildTitles(List<EssayTitle> childTitles) {
         this.childTitles = childTitles;
+        if (hasChild()){//此时有子层级
+            EssayTitle essayTitle =new EssayTitle();
+            essayTitle.setId(getId());
+            essayTitle.setPid(getPid());
+            essayTitle.setTitle("全部");
+            this.childTitles.add(0,essayTitle);
+        }
     }
 
     //是否为顶级标题

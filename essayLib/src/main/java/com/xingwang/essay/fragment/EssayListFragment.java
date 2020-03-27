@@ -47,18 +47,17 @@ public class EssayListFragment extends BaseLazyLoadFragment implements OnRefresh
     public static final String MAX_NUM="999999";
 
     private View view;
-
     protected SmartRefreshLayout swipe_essay;
+    //protected VpSwipeRefreshLayout swipe_essay;
     protected MaterialHeader swipe_header;
     protected RecyclerView recycler_essay;
 
     protected TextView tv_all_empty;
 
     private EssayListAdapter essayListAdapter;
-    private List<Essay> essayList=new ArrayList<>();//文章集合
     private List<Essay> allEssayList=new ArrayList<>();//全部文章集
 
-    private String title;
+    private String title_id;
     private HashMap<String,String> params=new HashMap<>();
 
     private String forwardId="0";//第一篇文章的id
@@ -89,11 +88,10 @@ public class EssayListFragment extends BaseLazyLoadFragment implements OnRefresh
     @Override
     public void initData() {
         if (getArguments() != null) {
-            title = getArguments().getString(ARG_PARAM);
+            title_id = getArguments().getString(ARG_PARAM);
         }
 
         swipe_header.setColorSchemeResources(R.color.reslib_colorAccent);
-        swipe_essay.autoRefresh();
         swipe_essay.setEnableAutoLoadMore(false);
         swipe_essay.setOnLoadMoreListener(this);
         swipe_essay.setOnRefreshListener(this);
@@ -107,11 +105,19 @@ public class EssayListFragment extends BaseLazyLoadFragment implements OnRefresh
 
     }
 
+    public void setTitle(String id){
+        title_id=id;
+        getFirstData();
+    }
+
     /**第一次获取数据*/
     private void getFirstData(){
+
+        if (swipe_essay!=null){
+            swipe_essay.autoRefresh();
+        }
         params.clear();
-        Log.i("EssayList",title);
-        params.put("category",title);
+        params.put("category_id",title_id);
         params.put("backward_div_id",MAX_NUM);
         params.put("num","10");
 
@@ -119,18 +125,21 @@ public class EssayListFragment extends BaseLazyLoadFragment implements OnRefresh
             @Override
             public void onFailure(String message) {
                 ToastUtils.showShortSafe(message);
-                swipe_essay.finishRefresh();
+                if (swipe_essay!=null){
+                    swipe_essay.finishRefresh();
+                }
             }
 
             @Override
             public void onSuccess(String json) {
 
                 allEssayList.clear();
-                swipe_essay.finishRefresh();
+                if (swipe_essay!=null){
+                    swipe_essay.finishRefresh();
+                }
                 List<Essay> tempList=JsonUtils.jsonToList(json,Essay.class);
 
-                essayList.addAll(0,tempList);
-                allEssayList.addAll(essayList);
+                allEssayList.addAll(0,tempList);
 
                 if (EmptyUtils.isEmpty(allEssayList)){
                     tv_all_empty.setVisibility(View.VISIBLE);
@@ -141,13 +150,8 @@ public class EssayListFragment extends BaseLazyLoadFragment implements OnRefresh
                 tv_all_empty.setVisibility(View.GONE);
                 swipe_essay.setVisibility(View.VISIBLE);
 
-                if (EmptyUtils.isNotEmpty(essayList)){
-                    forwardId=essayList.get(0).getId();
-                    backId=essayList.get(essayList.size()-1).getId();
-                }else {
-                    backId=MAX_NUM;
-                }
-
+                forwardId=allEssayList.get(0).getId();
+                backId=allEssayList.get(allEssayList.size()-1).getId();
                 essayListAdapter.notifyDataSetChanged();
             }
         });
@@ -157,7 +161,7 @@ public class EssayListFragment extends BaseLazyLoadFragment implements OnRefresh
     private void getRefreshData(){
 
         params.clear();
-        params.put("category",title);
+        params.put("category_id",title_id);
         params.put("forward_div_id",forwardId);
         params.put("num","10");
 
@@ -170,28 +174,19 @@ public class EssayListFragment extends BaseLazyLoadFragment implements OnRefresh
 
             @Override
             public void onSuccess(String json) {
-
-                allEssayList.clear();
                 swipe_essay.finishRefresh();
                 List<Essay> tempList=JsonUtils.jsonToList(json,Essay.class);
                 Collections.reverse(tempList);
                 if (EmptyUtils.isEmpty(tempList)){
                     ToastUtils.showShortSafe("暂无新数据!");
+                    return;
                 }
 
-                essayList.addAll(0,tempList);
-                allEssayList.addAll(essayList);
+                allEssayList.addAll(0,tempList);
 
-                if (EmptyUtils.isNotEmpty(essayList)){
-                    forwardId=String.valueOf(essayList.get(0).getId());
-                    backId=String.valueOf(essayList.get(essayList.size()-1).getId());
-                }else {
-                    backId=MAX_NUM;
-                }
+                forwardId=String.valueOf(allEssayList.get(0).getId());
+                backId=String.valueOf(allEssayList.get(allEssayList.size()-1).getId());
 
-                if (EmptyUtils.isEmpty(allEssayList)){
-                    ToastUtils.showShortSafe("暂无数据");
-                }
                 essayListAdapter.notifyDataSetChanged();
             }
         });
@@ -202,7 +197,7 @@ public class EssayListFragment extends BaseLazyLoadFragment implements OnRefresh
     private void loadMoreData(){
 
         params.clear();
-        params.put("category",title);
+        params.put("category_id",title_id);
         params.put("backward_div_id",backId);
         params.put("num","10");
 
@@ -215,21 +210,17 @@ public class EssayListFragment extends BaseLazyLoadFragment implements OnRefresh
 
             @Override
             public void onSuccess(String json) {
-
                 swipe_essay.finishLoadMore();
 
                 List<Essay> tempList=JsonUtils.jsonToList(json,Essay.class);
-                essayList.addAll(tempList);
-                allEssayList.addAll(tempList);
 
-                if (EmptyUtils.isNotEmpty(essayList)){
-                    backId=String.valueOf(essayList.get(essayList.size()-1).getId());
-                }else {
-                    backId=MAX_NUM;
-                }
                 if (EmptyUtils.isEmpty(tempList)){
                     ToastUtils.showShortSafe("无更多数据!");
+                    return;
                 }
+                allEssayList.addAll(tempList);
+                backId=String.valueOf(allEssayList.get(allEssayList.size()-1).getId());
+
                 essayListAdapter.notifyDataSetChanged();
             }
         });
@@ -238,7 +229,6 @@ public class EssayListFragment extends BaseLazyLoadFragment implements OnRefresh
     @Override
     public void onDestroy() {
         super.onDestroy();
-        essayList.clear();
         allEssayList.clear();
     }
 
@@ -247,7 +237,7 @@ public class EssayListFragment extends BaseLazyLoadFragment implements OnRefresh
         refreshLayout.getLayout().postDelayed(new Runnable() {
             @Override
             public void run() {
-               loadMoreData();
+                loadMoreData();
             }
         }, 1000);
     }

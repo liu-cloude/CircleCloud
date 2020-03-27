@@ -131,6 +131,34 @@ public class PartAdapter extends BaseAdapter {
      */
     public void generateChildView(Forum parent, LinearLayout layout, int level) {
 
+        if (EmptyUtils.isNotEmpty(parent.getCategorys())){//无子级--进入栏目列表
+            View view = getChildView();
+            ChildHolder holder = (ChildHolder) view.getTag();
+            CircleForumAdapter forumAdapter = new CircleForumAdapter(mContext,parent.getCategorys());
+            //设置布局方式
+            CustomerLinearLayoutManager customerManager=new CustomerLinearLayoutManager(mContext);
+            customerManager.setOrientation(CustomerLinearLayoutManager.HORIZONTAL);
+            holder.recycler_forum.setLayoutManager(customerManager);
+            holder.recycler_forum.setAdapter(forumAdapter);
+
+            forumAdapter.setChildClickListener(new OnChildClickListener() {
+                @Override
+                public void onItemClick(String categorys) {
+                    if (onChildClickListener!=null)
+                        onChildClickListener.onForumClick(parent,categorys);
+                }
+
+                @Override
+                public void onForumClick(Forum forum, String categorys) {
+
+                }
+            });
+
+            holder.recycler_forum.setPadding(level * 25, 0, 0, 0);
+            layout.addView(view);
+
+        }
+
         if (parent.hasChild()){//此时仍有子级
             final int tempLevel=level;
             for (final Forum item : parent.getChildForums()) {
@@ -157,33 +185,6 @@ public class PartAdapter extends BaseAdapter {
                 });
                 layout.addView(view);
             }
-        } else if (EmptyUtils.isNotEmpty(parent.getCategorys())){//无子级--进入栏目列表
-
-            View view = getChildView();
-            ChildHolder holder = (ChildHolder) view.getTag();
-            CircleForumAdapter forumAdapter = new CircleForumAdapter(mContext,parent.getCategorys());
-            //设置布局方式
-            CustomerLinearLayoutManager customerManager=new CustomerLinearLayoutManager(mContext);
-            customerManager.setOrientation(CustomerLinearLayoutManager.HORIZONTAL);
-            holder.recycler_forum.setLayoutManager(customerManager);
-            holder.recycler_forum.setAdapter(forumAdapter);
-
-            forumAdapter.setChildClickListener(new OnChildClickListener() {
-                @Override
-                public void onItemClick(String categorys) {
-                    if (onChildClickListener!=null)
-                        onChildClickListener.onForumClick(parent,categorys);
-                }
-
-                @Override
-                public void onForumClick(Forum forum, String categorys) {
-
-                }
-            });
-
-            holder.recycler_forum.setPadding(level * 25, 0, 0, 0);
-            layout.addView(view);
-
         }
     }
 

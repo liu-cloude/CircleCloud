@@ -16,12 +16,25 @@
         android:text="暂无数据"
         android:visibility="gone"/>
 
+   <!-- <com.xingwang.essay.view.VpSwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/essay_background"
+        android:paddingLeft="@dimen/essay_dp_5"
+        android:paddingRight="@dimen/essay_dp_5">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_essay"
+            android:layout_width="match_parent"
+            android:scrollbars="none"
+            android:layout_height="match_parent" />
+    </com.xingwang.essay.view.VpSwipeRefreshLayout>-->
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/swipe_essay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/essay_background"
-        android:padding="@dimen/essay_dp_5"
+        android:paddingLeft="@dimen/essay_dp_5"
+        android:paddingRight="@dimen/essay_dp_5"
         app:srlEnableFooterTranslationContent="true"
         android:orientation="vertical">
         <com.scwang.smartrefresh.header.MaterialHeader
