@@ -46,4 +46,12 @@
         android:layout_height="wrap_content"
         android:text="群聊"
         android:textSize="15sp"/>
+
+    <TextView
+        android:id="@+id/tv_clear_cache"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="清除缓存"
+        android:textSize="15sp"/>
 </LinearLayout>

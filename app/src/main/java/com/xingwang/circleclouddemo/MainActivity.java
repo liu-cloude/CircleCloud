@@ -6,9 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.xingwang.circle.CircleActivity;
 import com.xingwang.circle.PartSelctActivity;
+import com.xingwang.circle.utils.CacheUtils;
 import com.xingwang.essay.EssayListActivity;
 import com.xingwang.essay.EssayWebviewActivity;
 import com.xingwang.groupchat.GroupListActivity;
@@ -22,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     protected TextView tv_jump_essay;
 
     protected TextView tv_jump_groupchat;
+    protected TextView tv_clear_cache;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         tv_jump_circle_uri=findViewById(R.id.tv_jump_circle_uri);
         tv_jump_essay_uri=findViewById(R.id.tv_jump_essay_uri);
 
+        tv_clear_cache=findViewById(R.id.tv_clear_cache);
         tv_jump_groupchat=findViewById(R.id.tv_jump_groupchat);
 
         Uri circleUri = Uri.parse("circle://com.xingwang.circleclouddemo.host.card?id=56");
@@ -77,6 +81,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 GroupListActivity.getIntent(MainActivity.this);
+            }
+        });
+
+        tv_clear_cache.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CacheUtils.clearCache();
+                Toast.makeText(MainActivity.this,"删除了",Toast.LENGTH_SHORT).show();
             }
         });
     }

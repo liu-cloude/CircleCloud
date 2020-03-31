@@ -21,10 +21,10 @@ import com.blankj.utilcode.util.EmptyUtils;
 import com.blankj.utilcode.util.FileUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.xingwang.groupchat.utils.BottomPopWindow;
-import com.xingwang.groupchat.utils.Constants;
 import com.xingwang.groupchat.utils.HttpUtil;
 import com.xingwang.swip.title.TopTitleView;
 import com.xingwang.swip.utils.ActivityManager;
+import com.xingwang.swip.utils.Constants;
 import com.xingwang.swip.utils.GlideUtils;
 
 import java.io.File;

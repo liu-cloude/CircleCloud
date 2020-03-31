@@ -15,11 +15,11 @@ import com.xingwang.groupchat.bean.Group;
 import com.xingwang.groupchat.bean.Teammate;
 import com.xingwang.groupchat.bean.User;
 import com.xingwang.groupchat.callback.DialogAlertCallback;
-import com.xingwang.groupchat.utils.Constants;
 import com.xingwang.groupchat.utils.DialogUtils;
 import com.xingwang.groupchat.utils.HttpUtil;
 import com.xingwang.swip.title.TopTitleView;
 import com.xingwang.swip.utils.ActivityManager;
+import com.xingwang.swip.utils.Constants;
 import com.xingwang.swip.utils.JsonUtils;
 
 import java.util.ArrayList;

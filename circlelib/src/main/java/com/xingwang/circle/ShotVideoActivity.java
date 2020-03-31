@@ -13,10 +13,13 @@ import com.cjt2325.cameralibrary.listener.ClickListener;
 import com.cjt2325.cameralibrary.listener.ErrorListener;
 import com.cjt2325.cameralibrary.listener.JCameraListener;
 import com.xingwang.circle.base.BaseActivity;
+import com.xingwang.circle.view.MyJzvdStd;
 import com.xingwang.swip.utils.Constants;
 import com.xingwang.swip.utils.ActivityManager;
 
 import java.io.File;
+
+import cn.jzvd.JZUtils;
 
 public class ShotVideoActivity extends BaseActivity {
 
@@ -37,7 +40,7 @@ public class ShotVideoActivity extends BaseActivity {
     public void initData() {
         //设置视频保存路径
 
-        jcameraview.setSaveVideoPath(Environment.getExternalStorageDirectory().getPath() + File.separator + "im");
+        jcameraview.setSaveVideoPath(Constants.VIDEO_PATH);
 
         //设置只能录像或只能拍照或两种都可以（默认两种都可以）
         jcameraview.setFeatures(JCameraView.BUTTON_STATE_ONLY_RECORDER);
@@ -72,7 +75,7 @@ public class ShotVideoActivity extends BaseActivity {
             @Override
             public void recordSuccess(String url, Bitmap firstFrame) {
                 // 返回到播放页面
-                firstFramePath=Environment.getExternalStorageDirectory().getPath() + File.separator + "im"+  File.separator +System.currentTimeMillis()+ ".jpg";
+                firstFramePath=Constants.VIDEO_PATH+File.separator +System.currentTimeMillis()+ ".jpg";
                 ImageUtils.save(firstFrame,firstFramePath, Bitmap.CompressFormat.JPEG,true );
                 Intent intent = new Intent();
                 intent.putExtra(Constants.INTENT_DATA,url);

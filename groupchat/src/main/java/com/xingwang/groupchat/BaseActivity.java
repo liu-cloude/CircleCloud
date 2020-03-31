@@ -8,8 +8,8 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.blankj.utilcode.util.Utils;
-import com.xingwang.groupchat.utils.Constants;
 import com.xingwang.swip.utils.ActivityManager;
+import com.xingwang.swip.utils.Constants;
 import com.xingwang.swip.view.DialogLoading;
 
 public abstract class BaseActivity extends AppCompatActivity {
