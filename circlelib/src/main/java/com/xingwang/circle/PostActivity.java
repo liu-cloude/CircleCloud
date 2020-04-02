@@ -408,7 +408,7 @@ public class PostActivity extends BaseActivity implements SortableNinePhotoLayou
                             GlideUtils.loadPic(firstFramePath,img_screen,getApplicationContext());
                             return;
                        }
-
+                       picLocalPaths.clear();
                        picLocalPaths.addAll(list);
                        sort_photos.setData((ArrayList<String>) picLocalPaths);
                        if (EmptyUtils.isEmpty(picLocalPaths)){

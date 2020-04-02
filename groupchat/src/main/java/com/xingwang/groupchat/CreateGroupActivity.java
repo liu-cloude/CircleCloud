@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -162,13 +163,14 @@ public class CreateGroupActivity extends BaseActivity implements View.OnClickLis
 
     //获取图片/视频选择
     private void getPicResult() {
-        ToastUtils.showShortSafe("getPicResult()");
+       // ToastUtils.showShortSafe("getPicResult()");
         pickerDefine.showAvtarPicker(new ImagePickerCallBack() {
             @Override
             public void onResult(List<String> list, ImagePickerDefine.MediaType mediaType, List<String> list1) {
                 if (EmptyUtils.isNotEmpty(list)) {
                     localFiles.clear();
                     avatar=list.get(0);
+                    Log.i("group",avatar);
                     localFiles.add(FileUtils.getFileByPath(avatar));
                     GlideUtils.loadAvatar(avatar,img_add_group_avatar,CreateGroupActivity.this);
                 }
