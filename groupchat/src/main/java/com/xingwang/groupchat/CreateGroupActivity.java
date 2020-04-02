@@ -172,7 +172,7 @@ public class CreateGroupActivity extends BaseActivity implements View.OnClickLis
                     avatar=list.get(0);
                     Log.i("group",avatar);
                     localFiles.add(FileUtils.getFileByPath(avatar));
-                    GlideUtils.loadAvatar(avatar,img_add_group_avatar,CreateGroupActivity.this);
+                    GlideUtils.loadAvatar(avatar,img_add_group_avatar,CreateGroupActivity.this,true);
                 }
             }
         });
