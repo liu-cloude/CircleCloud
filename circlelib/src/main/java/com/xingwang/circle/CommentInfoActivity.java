@@ -368,17 +368,18 @@ public class CommentInfoActivity extends BaseActivity implements View.OnClickLis
 
         line_label.removeAllViews();
 
-        List<String> badges= Arrays.asList(badge.split(","));
+        if (EmptyUtils.isNotEmpty(badge)){
+            List<String> badges= Arrays.asList(badge.split(","));
 
-        for (String label:badges){
-            line_label.addView(BeautyDefine.getLabelUiFactoryDefine().getLabelUiFactory().getLabelView(this,label));
+            for (String label:badges){
+                line_label.addView(BeautyDefine.getLabelUiFactoryDefine().getLabelUiFactory().getLabelView(this,label));
+            }
+
+            if (badge.contains("gov")){
+                View govView=BeautyDefine.getBadgeUiFactoryDefine().getBadgeUiFactory().getBadgeView(this,"gov");
+                rela_avatar.addView(govView);
+            }
         }
-
-        if (badge.contains("gov")){
-            View govView=BeautyDefine.getBadgeUiFactoryDefine().getBadgeUiFactory().getBadgeView(this,"gov");
-            rela_avatar.addView(govView);
-        }
-
         getCommentInfo();
     }
 
