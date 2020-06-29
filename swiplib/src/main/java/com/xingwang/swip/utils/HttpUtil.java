@@ -115,7 +115,7 @@ public class HttpUtil {
         call.enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull final IOException e) {
-                Log.i("commonGet",e.getMessage());
+               // Log.i("commonGet",e.getMessage());
                 mainHandler.post(() -> callBack.onFailure("请求失败"));
             }
 
@@ -145,7 +145,7 @@ public class HttpUtil {
             @Override
             public void onFailure(@NonNull Call call, @NonNull final IOException e) {
                 mainHandler.post(() -> {
-                    Log.i("commonPost","onFailure:"+e.getMessage());
+                   // Log.i("commonPost","onFailure:"+e.getMessage());
                     callBack.onFailure("请求失败!");
                 });
             }
@@ -154,7 +154,7 @@ public class HttpUtil {
             public void onResponse(@NonNull Call call, @NonNull Response response) {
                 try {
                     String mdata = response.body().string();//该流只能调用一次 不然closed异常
-                    Log.i("commonPost","onSuccess:"+mdata);
+                    //Log.i("commonPost","onSuccess:"+mdata);
                     final CommonEntity<T> commonEntity = JsonUtils.jsonToPojo(mdata,CommonEntity.class);
                     handleResult(commonEntity,callBack);
 
@@ -174,7 +174,7 @@ public class HttpUtil {
         if (commonEntity.getStatus()==1){
             mainHandler.post(() -> callBack.onSuccess(JsonUtils.objectToJson(commonEntity.getData())));
         }else {
-            Log.i("handle","失败"+commonEntity.getStatus()+commonEntity.getMessage());
+            //Log.i("handle","失败"+commonEntity.getStatus()+commonEntity.getMessage());
             mainHandler.post(() -> callBack.onFailure(commonEntity.getMessage()));
         }
     }
@@ -187,7 +187,7 @@ public class HttpUtil {
             params = new HashMap<>();
         }
 
-        Log.i("url",url);
+        //Log.i("url",url);
 
         Uri.Builder builder = new Uri.Builder();
         for (String key : params.keySet()) {
@@ -196,7 +196,7 @@ public class HttpUtil {
 
         String query = builder.build().toString().replace("?","");
 
-        Log.i("param",query);
+       // Log.i("param",query);
 
         RequestBody body = RequestBody.create(MEDIA_TYPE_JSON,query);
 
@@ -233,7 +233,7 @@ public class HttpUtil {
             return null;
         }
 
-        Log.i("url",url);
+       // Log.i("url",url);
 
         Request request;
         if (tag != null) {
@@ -247,7 +247,7 @@ public class HttpUtil {
                     .build();
         }
 
-        Log.i("param",request.url().toString());
+       // Log.i("param",request.url().toString());
         return request;
     }
 

@@ -44,7 +44,8 @@
             android:name=".CardDetailActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:theme="@style/circle_card_detail_theme"
-            android:windowSoftInputMode="adjustResize|stateHidden">
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 

@@ -8,8 +8,10 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.xingwang.circle.CardDetailActivity;
 import com.xingwang.circle.CircleActivity;
 import com.xingwang.circle.PartSelctActivity;
+import com.xingwang.circle.PlayVideoActivity;
 import com.xingwang.circle.utils.CacheUtils;
 import com.xingwang.essay.EssayListActivity;
 import com.xingwang.essay.EssayWebviewActivity;
@@ -65,7 +67,10 @@ public class MainActivity extends AppCompatActivity {
         tv_jump_circle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               PartSelctActivity.getIntent(MainActivity.this,500);
+               //PartSelctActivity.getIntent(MainActivity.this,500);
+            /*   PlayVideoActivity.getIntent(MainActivity.this,
+                       "http://xw518app.oss-cn-beijing.aliyuncs.com/a89ac385259e47eab7d49fefb71c8602182zy.mp4");*/
+                CardDetailActivity.getIntent(MainActivity.this,"180");
             }
         });
 

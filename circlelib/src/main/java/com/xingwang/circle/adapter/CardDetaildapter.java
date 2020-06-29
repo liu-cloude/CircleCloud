@@ -30,6 +30,7 @@ import com.blankj.utilcode.util.FileUtils;
 import com.blankj.utilcode.util.TimeUtils;
 import com.blankj.utilcode.util.ToastUtils;
 
+import com.danikula.videocache.HttpProxyCacheServer;
 import com.xingwang.circle.CommentInfoActivity;
 import com.xingwang.circle.DiggListActivity;
 import com.xingwang.circle.PhotoPreviewActivity;
@@ -55,6 +56,7 @@ import com.xingwang.swip.utils.HttpUtil;
 import com.xingwang.swip.utils.JsonUtils;
 import com.xingwang.swip.utils.NoDoubleClickUtils;
 import com.xingwang.swip.view.NiceImageView;
+import com.xingwreslib.beautyreslibrary.BeautyVideoCacheSer;
 import com.xingwreslib.beautyreslibrary.BlogDiggInfo;
 import com.xingwreslib.beautyreslibrary.BlogDiggLiveData;
 import com.xingwreslib.beautyreslibrary.BlogFavoriteInfo;
@@ -69,8 +71,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-
-import cn.jzvd.JzvdStd;
 
 
 /**
@@ -241,7 +241,13 @@ public class CardDetaildapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 });
                 break;
             case CardFileType.VIDEO:
-                viewHolderCard.jzt_video.setUp(cardBody.getVideo(),"");
+                //viewHolderCard.jzt_video.setUp(cardBody.getVideo(),"",MyJzvd.SCREEN_NORMAL);
+
+                HttpProxyCacheServer proxy = BeautyVideoCacheSer.getInstance(context);
+                //2.我们播放视频的时候会调用以下代码生成proxyUrl
+                String proxyUrl = proxy.getProxyUrl(cardBody.getVideo());
+
+                viewHolderCard.jzt_video.setUp(proxyUrl,"",MyJzvd.SCREEN_NORMAL);
                 viewHolderCard.gv_card_img.setVisibility(View.GONE);
                 viewHolderCard.line_video.setVisibility(View.VISIBLE);
 
