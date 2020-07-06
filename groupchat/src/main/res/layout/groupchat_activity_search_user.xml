@@ -37,7 +37,7 @@
                 android:drawableLeft="@drawable/groupchat_ic_search"
                 android:drawablePadding="10dp"
                 android:gravity="center_vertical"
-                android:hint="请输入要搜索的手机号码"
+                android:hint="请输入要搜索的手机号码/id"
                 android:inputType="phone"
                 android:maxLines="1"
                 android:paddingLeft="20dp"

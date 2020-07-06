@@ -193,7 +193,7 @@ public class GroupSettingActivity extends BaseActivity implements View.OnClickLi
                 tv_group_name.setText(group.getTitle());
                // tv_group_title.setText(group.getTitle());
                 tv_group_intro.setText(group.getIntroduction());
-                GlideUtils.loadAvatar(group.getAvatar(),img_group_head,GroupSettingActivity.this);
+                GlideUtils.loadAvatar(group.getAvatar(),img_group_head,getApplicationContext());
 
                 if (group.getLeader(GroupSettingActivity.this)){
                     re_transfer.setVisibility(View.VISIBLE);
@@ -334,7 +334,7 @@ public class GroupSettingActivity extends BaseActivity implements View.OnClickLi
             public void onSuccess(String json,String tag) {
                 hideLoadingDialog();
                 ToastUtils.showShortSafe("修改成功!");
-                GlideUtils.loadAvatar(avatar,img_group_head,GroupSettingActivity.this);
+                GlideUtils.loadAvatar(avatar,img_group_head,getApplicationContext());
             }
         });
     }

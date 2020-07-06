@@ -57,7 +57,7 @@ public class GlideUtils {
             return;
         }
 
-        if (isCache){//此时不混村
+        if (isCache){//此时不缓存
             Glide.with(context).load(url)
                     .placeholder(R.drawable.swip_pp_ic_holder_light)
                     .error(R.drawable.swip_err_img)

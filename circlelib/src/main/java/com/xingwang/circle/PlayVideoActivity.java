@@ -45,6 +45,7 @@ public class PlayVideoActivity extends BaseActivity {
 
         jzt_video.backButton.setOnClickListener(v -> ActivityManager.getInstance().finishActivity());
         jzt_video.batteryLevel.setVisibility(View.GONE);
+        jzt_video.fullscreenButton.setVisibility(View.GONE);
 
        // GlideUtils.loadPic(cardBody.getCover(),jzt_video.thumbImageView,PlayVideoActivity.this);
 

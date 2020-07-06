@@ -170,7 +170,7 @@ public class GroupMemberActivity extends BaseActivity implements View.OnClickLis
                 for (User user:memberList){
                     if (user.getId()==group.getUser_id()){//群主匹配
                         memberList.remove(user);
-                        GlideUtils.loadAvatar(user.getAvatar(),img_manager,GroupMemberActivity.this);
+                        GlideUtils.loadAvatar(user.getAvatar(),img_manager,getApplicationContext());
                         tv_manager_name.setText(user.getNickname());
                         break;
                     }
