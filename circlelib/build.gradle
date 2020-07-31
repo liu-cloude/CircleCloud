@@ -40,7 +40,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-
+    implementation 'com.android.support:support-v4:28.0.0'
     implementation 'com.blankj:utilcode:1.8.2'
 
     //jackson
@@ -49,7 +49,7 @@ dependencies {
     implementation "com.fasterxml.jackson.core:jackson-databind:2.6.5"
 
     implementation 'com.beautydefinelibrary:beautydefinelibrary:1.2.13'
-    implementation 'com.beautyreslibrary:beautyreslibrary:1.1.7'
+    implementation 'com.beautyreslibrary:zy:1.0.3'
 
     api 'pub.devrel:easypermissions:2.0.1'
 

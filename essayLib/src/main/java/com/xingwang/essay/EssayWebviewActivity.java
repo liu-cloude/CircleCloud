@@ -30,8 +30,6 @@ import com.xingwang.swip.utils.HttpUtil;
 import com.xingwang.swip.utils.NoDoubleClickUtils;
 import com.xingwreslib.beautyreslibrary.ArticleFavoriteInfo;
 import com.xingwreslib.beautyreslibrary.ArticleFavoriteLiveData;
-import com.xingwreslib.beautyreslibrary.BlogFavoriteInfo;
-import com.xingwreslib.beautyreslibrary.BlogFavoriteLiveData;
 
 import java.util.ArrayList;
 import java.util.HashMap;
