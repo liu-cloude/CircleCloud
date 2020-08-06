@@ -7,7 +7,7 @@ import java.io.File;
 public class Constants {
 
     // public static String IP = "http://192.168.65.74/xwapp/public/";
-    public static String IP = "http://zyapp.test.xw518.com/";
+    public static String IP = "http://zyapp.app.xw518.com/";
 
     public final static String INTENT_DATA = "data";
     public final static String INTENT_DATA1 = "data1";

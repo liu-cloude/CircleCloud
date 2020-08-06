@@ -219,7 +219,7 @@ public class CommentInfoActivity extends BaseActivity implements View.OnClickLis
             public void onSuccess(String json) {
                 CommentBean tempComment= JsonUtils.jsonToPojo(json,CommentBean.class);
 
-                if (tempComment.getBid().equals("0")){//此时为基础评论
+                if (tempComment.getPid().equals("0")){//此时为基础评论
                     topComment=tempComment;
                     initTopCommentBean();
                 }else {//此时为子评论，获取基础评论
@@ -442,7 +442,7 @@ public class CommentInfoActivity extends BaseActivity implements View.OnClickLis
                     swipe_comment.finishLoadMore();
                 }
             }
-        }, 1000);
+        }, 500);
     }
 
     @Override

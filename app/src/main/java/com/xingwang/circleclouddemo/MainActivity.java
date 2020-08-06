@@ -1,5 +1,6 @@
 package com.xingwang.circleclouddemo;
 
+import android.app.usage.ConfigurationStats;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.xingwang.circle.CardDetailActivity;
+import com.xingwang.circle.CommentInfoActivity;
 import com.xingwang.circle.utils.CacheUtils;
 import com.xingwang.groupchat.GroupListActivity;
 
@@ -63,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         tv_jump_circle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CardDetailActivity.getIntent(MainActivity.this,"180");
+                CommentInfoActivity.getIntent(MainActivity.this,"154");
             }
         });
 
