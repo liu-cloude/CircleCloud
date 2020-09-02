@@ -121,13 +121,13 @@ public class CreateGroupActivity extends BaseActivity implements View.OnClickLis
                 return;
             }
 
-            if (EmptyUtils.isEmpty(avatar)) {
+          /*  if (EmptyUtils.isEmpty(avatar)) {
                 ToastUtils.showShortSafe("请选择群头像！");
                 return;
-            }
+            }*/
             showLoadingDialog();
-            uploadPic();
-            //createGroup();
+           // uploadPic();
+            createGroup();
         } else if (id == R.id.img_add_group_avatar) {
             popWindow.show();
         }
@@ -175,6 +175,11 @@ public class CreateGroupActivity extends BaseActivity implements View.OnClickLis
                     GlideUtils.loadAvatar(avatar,img_add_group_avatar,getApplicationContext(),true);
                 }
             }
+
+            @Override
+            public void onCancel() {
+
+            }
         });
     }
 
@@ -201,8 +206,8 @@ public class CreateGroupActivity extends BaseActivity implements View.OnClickLis
     private void createGroup() {
         params.clear();
         params.put("title", group_name);
-       // params.put("avatar", "https://pic2.zhimg.com/v2-a22e84085461ca29efd5fdc3c71bc13f_r.jpg");
-        params.put("avatar",avatar);
+        params.put("avatar", "https://pic2.zhimg.com/v2-a22e84085461ca29efd5fdc3c71bc13f_r.jpg");
+        //params.put("avatar",avatar);
 
         HttpUtil.post(Constants.GROUP_CREATE, params, new HttpUtil.HttpCallBack() {
             @Override

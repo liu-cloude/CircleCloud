@@ -49,7 +49,6 @@
             android:singleLine="true"
             android:ellipsize="end"
             android:paddingLeft="10dp"
-            android:text="managerName"
             android:textColor="@color/groupchat_text_black"
             android:textSize="15sp"/>
     </LinearLayout>

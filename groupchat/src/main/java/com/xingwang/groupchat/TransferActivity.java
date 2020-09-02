@@ -38,9 +38,15 @@ public class TransferActivity extends BaseActivity {
     private Group group;
     private HashMap<String,String> params=new HashMap<>();
 
-    public static void getIntent(Context context, Group group) {
+    //功能标识
+    private int flag;
+    //提示消息
+    private String hint;
+
+    public static void getIntent(Context context, Group group,int flag) {
         Intent intent = new Intent(context, TransferActivity.class);
         intent.putExtra(Constants.INTENT_DATA,group);
+        intent.putExtra(Constants.INTENT_DATA1,flag);
         context.startActivity(intent);
     }
 
@@ -66,16 +72,61 @@ public class TransferActivity extends BaseActivity {
 
         group=(Group)getIntent().getSerializableExtra(Constants.INTENT_DATA);
 
+        flag=getIntent().getIntExtra(Constants.INTENT_DATA1,0);
+
+        switch (flag){
+            case Constants.GROUP_ADMIN_FLAG://管理员
+                title.setTitleText("管理员");
+                break;
+            case Constants.GROUP_TRAN_FLAG://群转让
+                title.setTitleText("群转让");
+                break;
+            case Constants.GROUP_BLOCK_FLAG://群屏蔽
+                title.setTitleText("屏蔽");
+                break;
+        }
+
         transferAdapter=new GroupTransferAdapter(this,memberList);
+        transferAdapter.setFlag(flag);
         list_group.setAdapter(transferAdapter);
 
         list_group.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {
-                DialogUtils.obtainCommonDialog("转让给"+memberList.get(i).getNickname()+"后，你将失去群主身份", new DialogAlertCallback() {
+
+                if (flag==Constants.GROUP_BLOCK_FLAG){//屏蔽成员消息
+                    /*if (memberList.get(i).getIs_manager()==0){
+                        blockGroup(memberList.get(i).getStrId(),memberList.get(i).getHiddenFlag());
+                    }else {
+                        ToastUtils.showShort("不可屏蔽管理员");
+                    }*/
+                    blockGroup(memberList.get(i).getStrId(),memberList.get(i).getHiddenFlag());
+                    return;
+                }
+
+                switch (flag){
+                    case Constants.GROUP_ADMIN_FLAG://管理员
+
+                        if (memberList.get(i).getIs_manager()==0){//非管理员
+                            hint="将设置"+memberList.get(i).getNickname()+"为管理员";
+                        }else {
+                            hint="将取消"+memberList.get(i).getNickname()+"管理员权限";
+                        }
+
+                        break;
+                    case Constants.GROUP_TRAN_FLAG://群转让
+                        hint="转让给"+memberList.get(i).getNickname()+"后，你将失去群主身份";
+                        break;
+                }
+
+                DialogUtils.obtainCommonDialog(hint, new DialogAlertCallback() {
                     @Override
                     public void sure() {
-                        transferGroup(memberList.get(i).getStrId());
+                        if (flag==Constants.GROUP_ADMIN_FLAG){//群管理员
+                            setAdmin(memberList.get(i).getStrId(),memberList.get(i).getManagerFlag());
+                        }else {
+                            transferGroup(memberList.get(i).getStrId());
+                        }
                     }
                 }).show(getSupportFragmentManager());
             }});
@@ -87,6 +138,7 @@ public class TransferActivity extends BaseActivity {
         HttpUtil.get(Constants.GROUP_MEMBER +"?group_id="+ group.getId(), new HttpUtil.HttpCallBack() {
             @Override
             public void onFailure(String message) {
+                hideLoadingDialog();
                 ToastUtils.showShortSafe(message);
             }
 
@@ -109,6 +161,7 @@ public class TransferActivity extends BaseActivity {
                     list_group.setVisibility(View.VISIBLE);
                     tv_empty.setVisibility(View.GONE);
                 }
+                hideLoadingDialog();
                 transferAdapter.notifyDataSetChanged();
             }
         });
@@ -132,6 +185,48 @@ public class TransferActivity extends BaseActivity {
                 hideLoadingDialog();
                 ToastUtils.showShortSafe("操作成功!");
                 ActivityManager.getInstance().finishActivity();
+            }
+        });
+    }
+
+    //屏蔽群成员消息
+    private void blockGroup(String userId,int hidden){
+        showLoadingDialog();
+        params.clear();
+        params.put("group_id",group.getStrId());
+        params.put("user_id",userId);
+        params.put("is_hidden",String.valueOf(hidden));
+        HttpUtil.post(Constants.BLOCK_USER_GROUP, params, new HttpUtil.HttpCallBack() {
+            @Override
+            public void onFailure(String message) {
+                hideLoadingDialog();
+                ToastUtils.showShortSafe(message);
+            }
+
+            @Override
+            public void onSuccess(String json, String tag) {
+                getGroupMember();
+            }
+        });
+    }
+
+    //设置群管理员
+    private void setAdmin(String userId,int manager){
+        showLoadingDialog();
+        params.clear();
+        params.put("group_id",group.getStrId());
+        params.put("user_id",userId);
+        params.put("is_manager",String.valueOf(manager));
+        HttpUtil.post(Constants.SET_MANAGER_GROUP, params, new HttpUtil.HttpCallBack() {
+            @Override
+            public void onFailure(String message) {
+                hideLoadingDialog();
+                ToastUtils.showShortSafe(message);
+            }
+
+            @Override
+            public void onSuccess(String json, String tag) {
+                getGroupMember();
             }
         });
     }

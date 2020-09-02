@@ -71,8 +71,8 @@ public class GroupListActivity extends BaseActivity {
         list_group.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                BeautyDefine.getOpenPageDefine(GroupListActivity.this).toGroupChat(groupList.get(i).getId());
-                //GroupSettingActivity.getIntent(GroupListActivity.this,String.valueOf(groupList.get(i).getId()));
+               // BeautyDefine.getOpenPageDefine(GroupListActivity.this).toGroupChat(groupList.get(i).getId());
+                GroupSettingActivity.getIntent(GroupListActivity.this,String.valueOf(groupList.get(i).getId()));
             }
         });
         showLoadingDialog();

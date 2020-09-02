@@ -66,7 +66,9 @@ public class GroupSettingActivity extends BaseActivity implements View.OnClickLi
     protected ImageView img_group_head;
 
     /**群转让*/
-    protected RelativeLayout re_transfer;
+    //protected RelativeLayout re_transfer;
+    /**群管理*/
+    protected RelativeLayout re_admin_group;
 
     private BottomPopWindow popWindow;//底部弹窗
 
@@ -113,14 +115,16 @@ public class GroupSettingActivity extends BaseActivity implements View.OnClickLi
         img_group_head = findViewById(R.id.img_group_head);
 
         //群转让
-        re_transfer = findViewById(R.id.re_transfer);
+       // re_transfer = findViewById(R.id.re_transfer);
+        re_admin_group = findViewById(R.id.re_admin_group);
 
         img_group_head.setOnClickListener(this);
         bt_leave.setOnClickListener(this);
         rl_group_member.setOnClickListener(this);
         re_change_groupname.setOnClickListener(this);
         re_change_intro.setOnClickListener(this);
-        re_transfer.setOnClickListener(this);
+       // re_transfer.setOnClickListener(this);
+        re_admin_group.setOnClickListener(this);
 
     }
 
@@ -196,11 +200,11 @@ public class GroupSettingActivity extends BaseActivity implements View.OnClickLi
                 GlideUtils.loadAvatar(group.getAvatar(),img_group_head,getApplicationContext());
 
                 if (group.getLeader(GroupSettingActivity.this)){
-                    re_transfer.setVisibility(View.VISIBLE);
+                    re_admin_group.setVisibility(View.VISIBLE);
                     bt_leave.setText("解散群聊");
                     img_group_head.setClickable(true);
                 }else {
-                    re_transfer.setVisibility(View.GONE);
+                    re_admin_group.setVisibility(View.GONE);
                     bt_leave.setText("退出群聊");
                     img_group_head.setClickable(false);
                 }
@@ -222,7 +226,7 @@ public class GroupSettingActivity extends BaseActivity implements View.OnClickLi
             public void onSuccess(String json,String tag) {
                 userList.clear();
                 userList.addAll(JsonUtils.jsonToList(json,User.class));
-                memberListAdapter.isLeader(true);
+                memberListAdapter.isLeader(group.getLeader(GroupSettingActivity.this));
                 memberListAdapter.notifyDataSetChanged();
             }
         });
@@ -250,8 +254,8 @@ public class GroupSettingActivity extends BaseActivity implements View.OnClickLi
             EditGroupNameActivity.getIntent(GroupSettingActivity.this, group);
         } else if (id == R.id.re_change_intro) {//修改群简介
             GroupIntroActivity.getIntent(GroupSettingActivity.this, group);
-        } else if (id == R.id.re_transfer) {
-            TransferActivity.getIntent(GroupSettingActivity.this, group);
+        } else if (id == R.id.re_admin_group) {
+            AdminGroupActivity.getIntent(GroupSettingActivity.this, group);
         }
     }
 
@@ -295,6 +299,11 @@ public class GroupSettingActivity extends BaseActivity implements View.OnClickLi
                     localFiles.add(FileUtils.getFileByPath(list.get(0)));
                     uploadPic();
                 }
+            }
+
+            @Override
+            public void onCancel() {
+
             }
         });
     }

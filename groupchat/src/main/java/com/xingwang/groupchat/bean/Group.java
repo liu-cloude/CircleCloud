@@ -110,11 +110,12 @@ public class Group extends LookUpBean implements Serializable {
         return teamIdjson;
     }
 
+    //群主&管理员
     public boolean getLeader(Context context) {
-        if (getStrUser_id().equals(BeautyDefine.getUserInfoDefine(context).getUserId()))
+        //if (getStrUser_id().equals(BeautyDefine.getUserInfoDefine(context).getUserId()))
         //if (getUser_id()==42)
             return true;
-        return false;
+        //return false;
     }
 
 

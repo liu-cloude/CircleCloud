@@ -25,6 +25,9 @@ public class User {
     private String profile;
     private String badge;
     private String create_time;
+    private int is_official;
+    private int is_manager;
+    private int is_hidden;
     private int state;
 
     //是否被选中
@@ -122,5 +125,41 @@ public class User {
 
     public void setGroup(boolean group) {
         isGroup = group;
+    }
+
+    public int getIs_official() {
+        return is_official;
+    }
+
+    public void setIs_official(int is_official) {
+        this.is_official = is_official;
+    }
+
+    public int getIs_manager() {
+        return is_manager;
+    }
+
+    public void setIs_manager(int is_manager) {
+        this.is_manager = is_manager;
+    }
+
+    public int getIs_hidden() {
+        return is_hidden;
+    }
+
+    public int getHiddenFlag(){
+        if (is_hidden==0)
+            return 1;
+        return 0;
+    }
+
+    public int getManagerFlag(){
+        if (is_manager==0)
+            return 1;
+        return 0;
+    }
+
+    public void setIs_hidden(int is_hidden) {
+        this.is_hidden = is_hidden;
     }
 }

@@ -47,6 +47,7 @@ public class ChatGroupMemberListAdapter extends BaseAdapter {
         return list.size()+1;
     }
 
+
     public void isLeader(boolean leader){
         this.leader=leader;
     }

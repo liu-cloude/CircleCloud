@@ -6,8 +6,8 @@ import java.io.File;
 
 public class Constants {
 
-    // public static String IP = "http://192.168.65.74/xwapp/public/";
-    public static String IP = "http://zyapp.app.xw518.com/";
+    public static String IP = "http://xielei.test.xw518.com/zyapp.test.xw518.com/public/";
+    //public static String IP = "http://zyapp.app.xw518.com/";
 
     public final static String INTENT_DATA = "data";
     public final static String INTENT_DATA1 = "data1";
@@ -72,6 +72,11 @@ public class Constants {
     public static String ESSAY_SHARE = IP + "page/share_article?id=";
 
     /**********群聊模块***********/
+
+    public static final int GROUP_ADMIN_FLAG=10;//管理员
+    public static final int GROUP_TRAN_FLAG=11;//群转移
+    public static final int GROUP_BLOCK_FLAG=12;//屏蔽
+
     public static String HTTP_GROUP = IP + "group/user/group/";
     //其他
     public static String HTTP_GENERAL = IP + "user/general/user/";
@@ -102,6 +107,10 @@ public class Constants {
 
     //根据电话号码搜索用户
     public static String USER_INFO=HTTP_GENERAL+"info";
+    //群聊屏蔽用户
+    public static String BLOCK_USER_GROUP=HTTP_GROUP+"hiddenUser";
+    //设置群管理员
+    public static String SET_MANAGER_GROUP=HTTP_GROUP+"setManager";
 
     //重置IP
     public static void reSetIp(String type){

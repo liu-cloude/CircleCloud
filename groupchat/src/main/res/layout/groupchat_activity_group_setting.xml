@@ -95,29 +95,16 @@
 
         <RelativeLayout
             android:id="@+id/re_change_groupname"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:background="@color/groupchat_white"
-            android:padding="10dp" >
+            style="@style/groupchat_groupset_rela"
+            android:layout_marginTop="@dimen/groupchat_dp_20">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:text="群名称"
-                android:textColor="#353535"
-                android:textSize="16sp"
-                android:typeface="serif" />
+                style="@style/groupchat_groupset_rela_tv"
+                android:text="群名称" />
 
             <ImageView
                 android:id="@+id/img_next"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="10dp"
-                android:src="@drawable/groupchat_icon_next" />
+                style="@style/groupchat_groupset_rela_img" />
 
             <TextView
                 android:id="@+id/tv_group_name"
@@ -136,28 +123,15 @@
             style="@style/groupchat_line_View"/>
         <RelativeLayout
             android:id="@+id/re_change_intro"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/groupchat_white"
-            android:padding="10dp" >
+            style="@style/groupchat_groupset_rela">
             <TextView
                 android:id="@+id/tv_intro_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:text="群简介"
-                android:textColor="#353535"
-                android:textSize="16sp"
-                android:typeface="serif" />
+                style="@style/groupchat_groupset_rela_tv"
+                android:text="群简介" />
 
             <ImageView
                 android:id="@+id/img_next_intro"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="10dp"
-                android:src="@drawable/groupchat_icon_next" />
+                style="@style/groupchat_groupset_rela_img" />
 
             <TextView
                 android:id="@+id/tv_group_intro"
@@ -178,29 +152,27 @@
 
         <View
             style="@style/groupchat_line_View"/>
-        <RelativeLayout
+
+        <!--<RelativeLayout
             android:id="@+id/re_transfer"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/groupchat_white"
-            android:padding="10dp" >
+            style="@style/groupchat_groupset_rela">
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:text="转让群"
-                android:textColor="#353535"
-                android:textSize="16sp"
-                android:typeface="serif" />
+                style="@style/groupchat_groupset_rela_tv"
+                android:text="转让群" />
 
             <ImageView
                 android:id="@+id/img_next_transfer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="10dp"
-                android:src="@drawable/groupchat_icon_next" />
+                style="@style/groupchat_groupset_rela_img"  />
+        </RelativeLayout>-->
+        <RelativeLayout
+            android:id="@+id/re_admin_group"
+            style="@style/groupchat_groupset_rela">
+            <TextView
+                style="@style/groupchat_groupset_rela_tv"
+                android:text="管理群" />
+
+            <ImageView
+                style="@style/groupchat_groupset_rela_img"  />
         </RelativeLayout>
 
         <Button

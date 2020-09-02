@@ -69,4 +69,32 @@
         <item name="android:text">"暂无数据"</item>
         <item name="android:visibility">gone</item>
     </style>
+
+    <!--群设置页面-->
+    <style name="groupchat_groupset_rela">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/groupchat_dp_50</item>
+        <item name="android:background">@color/groupchat_white</item>
+        <item name="android:padding">@dimen/groupchat_dp_10</item>
+    </style>
+
+    <!--群设置页面栏目说明 -->
+    <style name="groupchat_groupset_rela_tv">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:textColor">#353535</item>
+        <item name="android:textSize">@dimen/groupchat_sp_16</item>
+        <item name="android:typeface">serif</item>
+    </style>
+
+    <!--群设置页面next导航-->
+    <style name="groupchat_groupset_rela_img">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginRight">@dimen/groupchat_dp_10</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:src">@drawable/groupchat_icon_next</item>
+    </style>
 </resources>

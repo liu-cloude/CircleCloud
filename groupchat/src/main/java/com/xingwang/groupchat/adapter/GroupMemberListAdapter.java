@@ -100,6 +100,13 @@ public class GroupMemberListAdapter extends RecyclerView.Adapter<GroupMemberList
 
         GlideUtils.loadAvatar(user.getAvatar(),viewHolder.img_head,mContext);
         viewHolder.tv_name.setText(user.getNickname());
+
+        if (user.getIs_manager()==0){//非管理员
+           viewHolder.tv_admin_info.setVisibility(View.GONE);
+        }else {
+            viewHolder.tv_admin_info.setVisibility(View.VISIBLE);
+        }
+
     }
 
     @Override
@@ -109,6 +116,7 @@ public class GroupMemberListAdapter extends RecyclerView.Adapter<GroupMemberList
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private TextView tv_name;
+        private TextView tv_admin_info;
         private CheckBox check_select;
         private LinearLayout line_item;
         private ImageView img_head;
@@ -116,6 +124,7 @@ public class GroupMemberListAdapter extends RecyclerView.Adapter<GroupMemberList
         public ViewHolder(View itemView) {
             super(itemView);
             tv_name = itemView.findViewById(R.id.tv_name);
+            tv_admin_info = itemView.findViewById(R.id.tv_admin_info);
             check_select = itemView.findViewById(R.id.check_select);
             line_item =  itemView.findViewById(R.id.line_item);
             img_head =  itemView.findViewById(R.id.iv_pic);

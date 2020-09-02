@@ -17,14 +17,18 @@
     <application
         android:allowBackup="true"
         android:supportsRtl="true">
+        <!--栏目-->
         <activity android:name=".PartSelctActivity"
             android:theme="@style/reslib_AppTheme.Translucent" ></activity>
+        <!---->
         <activity
             android:name=".TagSelectActivity"
             android:theme="@style/reslib_AppTheme.Translucent" />
+        <!--点赞列表-->
         <activity
             android:name=".DiggListActivity"
             android:theme="@style/reslib_AppTheme.Translucent" />
+        <!--评论详情-->
         <activity
             android:name=".CommentInfoActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
@@ -40,6 +44,7 @@
                     android:scheme="circle" />
             </intent-filter>
         </activity>
+        <!--帖子详情-->
         <activity
             android:name=".CardDetailActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
@@ -56,19 +61,24 @@
                     android:scheme="circle" />
             </intent-filter>
         </activity>
+        <!--视频播放-->
         <activity
             android:name=".PlayVideoActivity"
             android:theme="@style/reslib_AppTheme.Translucent" />
+        <!--视频拍摄-->
         <activity
             android:name=".ShotVideoActivity"
             android:theme="@style/reslib_AppTheme.Translucent" />
+        <!--大图-->
         <activity
             android:name=".PhotoPreviewActivity"
             android:theme="@style/reslib_AppTheme.Translucent" />
+        <!--发帖子-->
         <activity
             android:name=".PostActivity"
             android:theme="@style/reslib_AppTheme.Translucent"
             android:windowSoftInputMode="adjustPan|stateHidden" />
+
         <activity
             android:name=".CardActivity"
             android:theme="@style/reslib_AppTheme.Translucent" />
